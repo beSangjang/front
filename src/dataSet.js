@@ -1,6 +1,6 @@
 export const stockDataHeader = [
   {
-    name: "두나무",
+    name: "두나,무ㅋㅋ ",
     isPositive: true,
     price: 2455.12,
     percentage: 12,
@@ -685,95 +685,94 @@ export const stockDataForPortfolio = [
 
 export const pentagonData = [
   {
-    "taste": "Market Cap",
-    "now": 33,
+    taste: "Market Cap",
+    now: 33,
     "6 month ago": 114,
-    "1 year ago": 38
+    "1 year ago": 38,
   },
   {
-    "taste": "Trading Volume",
-    "now": 53,
+    taste: "Trading Volume",
+    now: 53,
     "6 month ago": 93,
-    "1 year ago": 72
+    "1 year ago": 72,
   },
   {
-    "taste": "ROE",
-    "now": 27,
+    taste: "ROE",
+    now: 27,
     "6 month ago": 26,
-    "1 year ago": 92
+    "1 year ago": 92,
   },
   {
-    "taste": "PER",
-    "now": 111,
+    taste: "PER",
+    now: 111,
     "6 month ago": 94,
-    "1 year ago": 116
+    "1 year ago": 116,
   },
   {
-    "taste": "PBR",
-    "now": 117,
+    taste: "PBR",
+    now: 117,
     "6 month ago": 83,
-    "1 year ago": 36
-  }
-]
+    "1 year ago": 36,
+  },
+];
 
 export const stockLineData = [
   {
-    "id": "두나무",
-    "color": "hsl(217, 70%, 50%)",
-    "data": [
+    id: "두나무",
+    color: "hsl(217, 70%, 50%)",
+    data: [
       {
-        "x": "1",
-        "y": 4
+        x: "1",
+        y: 4,
       },
       {
-        "x": "2",
-        "y": 146
+        x: "2",
+        y: 146,
       },
       {
-        "x": "3",
-        "y": 122
+        x: "3",
+        y: 122,
       },
       {
-        "x": "4",
-        "y": 138
+        x: "4",
+        y: 138,
       },
       {
-        "x": "5",
-        "y": 157
+        x: "5",
+        y: 157,
       },
       {
-        "x": "6",
-        "y": 17
+        x: "6",
+        y: 17,
       },
       {
-        "x": "7",
-        "y": 294
+        x: "7",
+        y: 294,
       },
       {
-        "x": "8",
-        "y": 45
+        x: "8",
+        y: 45,
       },
       {
-        "x": "9",
-        "y": 86
+        x: "9",
+        y: 86,
       },
       {
-        "x": "10",
-        "y": 194
+        x: "10",
+        y: 194,
       },
       {
-        "x": "11",
-        "y": 42
+        x: "11",
+        y: 42,
       },
       {
-        "x": "12",
-        "y": 96
+        x: "12",
+        y: 96,
       },
       {
-        "x": "13",
-        "y": 4
-      }
-    ]
-  }
-]
-
+        x: "13",
+        y: 4,
+      },
+    ],
+  },
+];
