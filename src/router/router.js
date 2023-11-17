@@ -5,7 +5,7 @@ import StockDetail from "./stockDetailPage/stockDetail";
 import { loaderForDetail } from "./stockDetailPage/stockDetail";
 import OrderBook from "./orderBook/OrderBook";
 import PortfolioPage from "./portfolio/Portfolio";
-
+import MintingPage from "./mintNFT/Minting";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +22,7 @@ const router = createBrowserRouter([
         path: "myPortfolio/",
         element: <PortfolioPage />,
       },
+      { path: "mint/", element: <MintingPage /> },
     ],
   },
 ]);

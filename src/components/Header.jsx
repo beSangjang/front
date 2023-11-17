@@ -70,7 +70,7 @@ export default function Header() {
             <Link to={"/aa"}>돋보기</Link>
           </div>
           <div>
-            <Link to={"/aa"}>상장예정 주식</Link>
+            <Link to={"/mint"}>STO 발급하기</Link>
           </div>
           <div>
             <button
