@@ -1,14 +1,14 @@
 import { stockDataForPortfolio } from "../../dataSet";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
-import GetMyNFTs from "../../components/MyNfts";
+import GetMyStocks from "../../components/MyNfts";
 
 export default function PortfolioPage() {
   const dataOwn = stockDataForPortfolio.slice(0, 4);
   const [walletAddress, setWalletAddress] = useState("");
   const [walletBalance, setWalletBalance] = useState(0);
   const [chainId, setChainId] = useState(0);
-  const [nfts, setNfts] = useState(<div> </div>);
+  const [nfts, setNfts] = useState(<div></div>);
   useEffect(() => {
     getCurrentWalletConneted();
   }, []);
@@ -28,7 +28,8 @@ export default function PortfolioPage() {
           method: "eth_chainId",
         });
         if (account.length > 0) {
-          setNfts(<GetMyNFTs address={account[0]}></GetMyNFTs>)
+          // setNfts(<GetMyNFTs address={account[0]}></GetMyNFTs>);
+          //alert 뜸
           setWalletAddress(account[0]);
           const balance = await provider.getBalance(account[0]);
           setWalletBalance(ethers.formatEther(balance));
@@ -132,7 +133,7 @@ export default function PortfolioPage() {
         <div className="flex flex-col">
           <div className="flex font-bold text-xl justify-between  text-center my-2">
             <div className="w-1/6">image</div>
-            <div className="w-1/6">name  description</div>
+            <div className="w-1/6">name description</div>
             <div className="w-1/6">transaction</div>
             <div className="w-1/6">contractAddress</div>
             <div className="w-1/6">time</div>
@@ -140,8 +141,13 @@ export default function PortfolioPage() {
           </div>
           <div className="flex flex-col text-center">
             {
-            nfts
-            // GetMyNFTs(walletAddress)
+              // nfts
+              // GetMyNFTs(walletAddress)
+              walletAddress === "" ? (
+                ""
+              ) : (
+                <GetMyStocks address={walletAddress} />
+              )
             }
             <button className="ml-10/12 self-center  mt-5 text-sm font-semibold p-2">
               보유주식 더 보기 {">"}
