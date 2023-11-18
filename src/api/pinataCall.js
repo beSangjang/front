@@ -1,12 +1,9 @@
 import axios from "axios";
-import {
-  REACT_APP_ACCESS_KEY,
-  REACT_APP_SECRET_ACCESS_KEY,
-} from "../config.js";
-import { Readable } from "stream";
+const PinataAccessKey = process.env.REACT_APP_PINATA_ACCESS_KEY;
+const pinataSecretKey = process.env.REACT_APP_PINATA_SECRET_KEY;
 
-const fs = require('fs')
-const FormData = require('form-data')
+const fs = require("fs");
+const FormData = require("form-data");
 
 axios.defaults.withCredentials = true;
 
@@ -17,8 +14,8 @@ export const uploadImgToPinata = async (data) => {
         maxContentLength: "Infinity",
         headers: {
           "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
-          pinata_api_key: `${REACT_APP_ACCESS_KEY}`,
-          pinata_secret_api_key: `${REACT_APP_SECRET_ACCESS_KEY}`,
+          pinata_api_key: `${PinataAccessKey}`,
+          pinata_secret_api_key: `${pinataSecretKey}`,
         },
       })
       .then((res) => {
@@ -48,8 +45,8 @@ export const jsonToPinata = async (metaData) => {
       .post("https://api.pinata.cloud/pinning/pinJSONToIPFS", data, {
         headers: {
           "Content-Type": "application/json",
-          pinata_api_key: `${REACT_APP_ACCESS_KEY}`,
-          pinata_secret_api_key: `${REACT_APP_SECRET_ACCESS_KEY}`,
+          pinata_api_key: `${PinataAccessKey}`,
+          pinata_secret_api_key: `${pinataSecretKey}`,
         },
       })
       .then((res) => {

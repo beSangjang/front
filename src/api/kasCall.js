@@ -1,11 +1,5 @@
-import axios from "axios";
-
-import { toNumber } from "ethers";
-const accessKey = "KASKGXEAAT7WAM63229IWMBI";
-const secretKey = "Z4DK-ybSsvcUcZxmAy_ZBJJB6MN6N_drbCBd2pgs";
-const chainId = 1001;
-
-axios.defaults.withCredentials = true;
+const accessKey = process.env.REACT_APP_KAS_ACCESS_KEY;
+const secretKey = process.env.REACT_APP_KAS_SECRET_KEY;
 
 // EOA로 NFTs 가져오기
 export const getStocksByAddress = async () => {

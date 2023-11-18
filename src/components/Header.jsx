@@ -67,10 +67,10 @@ export default function Header() {
             {searchFocus && <SearchResult searchTxt={search} />}
           </div>
           <div>
-            <Link to={"/aa"}>돋보기</Link>
+            <Link to={"/aa"}>what is </Link>
           </div>
           <div>
-            <Link to={"/mint"}>STO 발급하기</Link>
+            <Link to={"/mint"}>mint STo</Link>
           </div>
           <div>
             <button
@@ -78,11 +78,11 @@ export default function Header() {
                 if (walletAddress !== undefined && walletAddress !== "") {
                   navigate("/myPortfolio");
                 } else {
-                  alert("메타마스크를 연결해주세요");
+                  alert("connect Metamask");
                 }
               }}
             >
-              내 포트폴리오
+              My PortFolio
             </button>
           </div>
         </div>

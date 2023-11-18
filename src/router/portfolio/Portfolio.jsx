@@ -75,15 +75,15 @@ export default function PortfolioPage() {
 
   return (
     <div className="flex flex-col w-8/12 mx-auto">
-      <div className="w-full border-black border-2 mt-12 px-12 py-12 rounded-lg flex flex-col gap-2">
+      <div className="w-full border-black border-2 mt-12 px-12 py-10 rounded-lg flex flex-col gap-2">
         <div className="flex justify-between">
-          <p className="text-2xl font-bold ">내 지갑</p>
+          <p className="text-3xl font-bold ">My Wallet</p>
           <div className=" flex gap-20">
             <div className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200">
-              거래내역
+              see Previous Transactions
             </div>
             <div className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200">
-              포트폴리오
+              Portfolio
             </div>
           </div>
         </div>
@@ -92,44 +92,46 @@ export default function PortfolioPage() {
           {chainId}
         </p>
         <p className="text-xl pb-4 ">
-          <span className=" font-bold">지갑 주소</span>
+          <span className=" font-bold">walle Address</span>
           {walletAddress}
         </p>
 
         <div className="text-mg flex">
           <div className="w-1/2">
-            <span className="font-bold">보유 Token:</span>
+            <span className="font-bold">Tokens:</span>
             {walletBalance}
           </div>
           <div className="w-1/2">
-            <span className="font-bold">예상 배당금:</span>
-            {walletBalance + 32}
+            <span className="font-bold">dividend:</span>
+            {
+              walletBalance + 32 //배당
+            }
           </div>
         </div>
         <div className="text-mg flex">
           <div className="w-1/2">
-            <span className="font-bold">총 수익률:</span>
+            <span className="font-bold">total earn:</span>
             {walletBalance + 33}%
           </div>
           <div className="w-1/2">
-            <span className="font-bold">수수료:</span>
+            <span className="font-bold">fee rate:</span>
             {walletBalance + 34}
           </div>
         </div>
         <div className="text-mg flex">
           <div className="w-1/2">
-            <span className="font-bold">총 매수금</span>
+            <span className="font-bold">total buy</span>
             {walletBalance + 35}
           </div>
           <div className="w-1/2">
-            <span className="font-bold">총 매도금</span>
+            <span className="font-bold">total sell</span>
             {walletBalance + 36}
           </div>
         </div>
       </div>
 
       <div className="w-full border-black border-2 mt-12 px-12 py-8 rounded-lg flex flex-col gap-2">
-        <p className="text-2xl font-bold my-4">보유 STO</p>
+        <p className="text-2xl font-bold my-4">STO List</p>
         <div className="flex flex-col">
           <div className="flex font-bold text-xl justify-between  text-center my-2">
             <div className="w-1/6">name</div>
@@ -147,8 +149,8 @@ export default function PortfolioPage() {
                 <GetMyStocks address={walletAddress} />
               )
             }
-            <button className="ml-10/12 self-center  mt-5 text-sm font-semibold p-2">
-              보유주식 더 보기 {">"}
+            <button className="ml-10/12 self-center  mt-5 text-lg font-semibold p-2">
+              see more {">"}
             </button>
           </div>
         </div>
