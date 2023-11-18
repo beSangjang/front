@@ -1,7 +1,7 @@
 import { stockDataForPortfolio } from "../../dataSet";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
-import GetMyStocks from "../../components/MyNfts";
+import GetMyStocks from "../../components/MyStocks";
 
 export default function PortfolioPage() {
   const dataOwn = stockDataForPortfolio.slice(0, 4);
@@ -132,19 +132,17 @@ export default function PortfolioPage() {
         <p className="text-2xl font-bold my-4">보유 STO</p>
         <div className="flex flex-col">
           <div className="flex font-bold text-xl justify-between  text-center my-2">
-            <div className="w-1/6">image</div>
-            <div className="w-1/6">name description</div>
-            <div className="w-1/6">transaction</div>
+            <div className="w-1/6">name</div>
             <div className="w-1/6">contractAddress</div>
-            <div className="w-1/6">time</div>
-            <div className="w-1/6">tokenId</div>
+            <div className="w-1/6">ticker</div>
+            <div className="w-1/6">amount</div>
           </div>
-          <div className="flex flex-col text-center">
+          <div className="flex flex-col text-center w-full">
             {
               // nfts
               // GetMyNFTs(walletAddress)
               walletAddress === "" ? (
-                ""
+                <div></div>
               ) : (
                 <GetMyStocks address={walletAddress} />
               )
