@@ -456,74 +456,82 @@ export const dummyStocks = {
 export const section = {
   total: [
     {
-      title: "'못하게 해주세요'… 공매도 제도 개선, 5만명 청원 달성",
-      link: "https://n.news.naver.com/mnews/article/005/0001644788",
+      title: "In ousting CEO Sam Altman, ChatGPT loses its best fundraiser",
+      link: "https://www.investing.com/news/stock-market-news/in-ousting-ceo-sam-altman-chatgpt-loses-its-best-fundraiser-3238215",
     },
     {
-      title: "육아휴직 후 ‘승진 제외’…중노위 '성차별 맞다' 첫 판단",
-      link: "https://n.news.naver.com/mnews/article/005/0001644784",
+      title:
+        "Apple’s Effort to Replace Qualcomm Chip in iPhone Falls Further Behind",
+      link: "https://www.bloomberg.com/news/articles/2023-11-16/apple-project-to-replace-modems-made-by-qualcomm-falls-further-behind-to-2026#xj4y7vzkg",
     },
     {
-      title: "또래 성폭행하고 SNS 방송한 10대 5명…경찰 수사 착수",
-      link: "https://n.news.naver.com/mnews/article/005/0001644769",
+      title: "Lionsgate suspends advertising on X",
+      link: "https://www.investing.com/news/stock-market-news/lionsgate-suspends-advertising-on-x-3238115",
     },
     {
-      title: "이·팔전쟁에 ‘증오범죄’ 잇따라…美 70대, 6세 소년 살해도",
-      link: "https://n.news.naver.com/mnews/article/005/0001644786",
+      title:
+        "Moody's lifts Italy's debt outlook to stable in boost for Meloni govt",
+      link: "https://www.investing.com/news/stock-market-news/moodys-lifts-italys-debt-outlook-to-stable-in-boost-for-meloni-govt-3238199",
     },
   ],
   ipo: [
     {
-      title: "'못하게 해주세요'… 공매도 제도 개선, 5만명 청원 달성",
-      link: "https://n.news.naver.com/mnews/article/005/0001644788",
+      title:
+        "Investcorp Capital Plc IPO raises $451 million amid robust demand",
+      link: "https://www.investing.com/news/stock-market-news/investcorp-capital-plc-ipo-raises-451-million-amid-robust-demand-3237304",
     },
     {
-      title: "육아휴직 후 ‘승진 제외’…중노위 '성차별 맞다' 첫 판단",
-      link: "https://n.news.naver.com/mnews/article/005/0001644784",
+      title: "Gandhar Oil Refinery India sets IPO for November 22",
+      link: "https://www.investing.com/news/stock-market-news/gandhar-oil-refinery-india-sets-ipo-for-november-22-3236223",
     },
     {
-      title: "또래 성폭행하고 SNS 방송한 10대 5명…경찰 수사 착수",
-      link: "https://n.news.naver.com/mnews/article/005/0001644769",
+      title: "Wuxi XDC shares surge 31% in Hong Kong trading debut",
+      link: "https://www.investing.com/news/stock-market-news/wuxi-xdc-shares-surge-31-in-hong-kong-trading-debut-3237185",
     },
     {
-      title: "이·팔전쟁에 ‘증오범죄’ 잇따라…美 70대, 6세 소년 살해도",
-      link: "https://n.news.naver.com/mnews/article/005/0001644786",
+      title: "Yatra Online reports growth in Q3, announces share buyback",
+      link: "https://www.investing.com/news/stock-market-news/yatra-online-reports-growth-in-q3-announces-share-buyback-3238096",
     },
   ],
   sto: [
     {
-      title: "'못하게 해주세요'… 공매도 제도 개선, 5만명 청원 달성",
-      link: "https://n.news.naver.com/mnews/article/005/0001644788",
+      title:
+        "Abcam plc founder to vote against proposed $5.7B Danaher acquisition, believes offer undervalues the company",
+      link: "https://www.investing.com/news/stock-market-news/abcam-plc-founder-to-vote-against-proposed-57b-danaher-acquisition-believes-offer-undervalues-the-company-432SI-3174804",
     },
     {
-      title: "육아휴직 후 ‘승진 제외’…중노위 '성차별 맞다' 첫 판단",
-      link: "https://n.news.naver.com/mnews/article/005/0001644784",
+      title: "AgeX Therapeutics restructures debt, faces financial uncertainty",
+      link: "https://www.investing.com/news/stock-market-news/agex-therapeutics-restructures-debt-faces-financial-uncertainty-93CH-3234344",
     },
     {
-      title: "또래 성폭행하고 SNS 방송한 10대 5명…경찰 수사 착수",
-      link: "https://n.news.naver.com/mnews/article/005/0001644769",
+      title:
+        "AMTD IDEA Group revises ADS to Class A share ratio effective November 17",
+      link: "https://www.investing.com/news/stock-market-news/amtd-idea-group-revises-ads-to-class-a-share-ratio-effective-november-17-93CH-3225227",
     },
     {
-      title: "이·팔전쟁에 ‘증오범죄’ 잇따라…美 70대, 6세 소년 살해도",
-      link: "https://n.news.naver.com/mnews/article/005/0001644786",
+      title:
+        "Wall Street barely gains as traders digest earlier gains, Fed comments",
+      link: "https://www.investing.com/news/economy/futures-drift-higher-as-yields-slip-3237533",
     },
   ],
   web3: [
     {
-      title: "'못하게 해주세요'… 공매도 제도 개선, 5만명 청원 달성",
-      link: "https://n.news.naver.com/mnews/article/005/0001644788",
+      title:
+        "Singapore central bank to trial live wholesale CBDC for settlements",
+      link: "https://www.investing.com/news/cryptocurrency-news/singapore-central-bank-to-trial-live-wholesale-cbdc-for-settlements-3238227",
     },
     {
-      title: "육아휴직 후 ‘승진 제외’…중노위 '성차별 맞다' 첫 판단",
-      link: "https://n.news.naver.com/mnews/article/005/0001644784",
+      title:
+        "Web3 should draw newcomers, not be a ‘money grab from brands’ — Tech CEO",
+      link: "https://www.investing.com/news/cryptocurrency-news/web3-should-draw-newcomers-not-be-a-money-grab-from-brands--tech-ceo-3238219",
     },
     {
-      title: "또래 성폭행하고 SNS 방송한 10대 5명…경찰 수사 착수",
-      link: "https://n.news.naver.com/mnews/article/005/0001644769",
+      title: "Bitcoin fees skyrocket on spot BTC ETF hype",
+      link: "https://www.investing.com/news/cryptocurrency-news/bitcoin-fees-skyrocket-on-spot-btc-etf-hype-3238224",
     },
     {
-      title: "이·팔전쟁에 ‘증오범죄’ 잇따라…美 70대, 6세 소년 살해도",
-      link: "https://n.news.naver.com/mnews/article/005/0001644786",
+      title: "XRP Struggles at $0.74: Crucial Technical Juncture",
+      link: "https://www.investing.com/news/cryptocurrency-news/xrp-struggles-at-074-crucial-technical-juncture-3238212",
     },
   ],
 };
