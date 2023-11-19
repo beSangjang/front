@@ -59,7 +59,7 @@ export default function MainPage() {
             <div className="">name</div>
             <div className="flex gap-10 justify-between w-44">
               <div>Ratio</div>
-              <div lassName="w-24 text-right">price</div>
+              <div className="w-24 text-right">price</div>
             </div>
           </div>
           {tenStock.map((el) => {

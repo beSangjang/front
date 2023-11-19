@@ -496,7 +496,7 @@ export const section = {
   sto: [
     {
       title:
-        "Abcam plc founder to vote against proposed $5.7B Danaher acquisition, believes offer undervalues the company",
+        "Abcam plc founder to vote against proposed $5.7B Danaher acquisition",
       link: "https://www.investing.com/news/stock-market-news/abcam-plc-founder-to-vote-against-proposed-57b-danaher-acquisition-believes-offer-undervalues-the-company-432SI-3174804",
     },
     {

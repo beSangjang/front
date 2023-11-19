@@ -2,13 +2,13 @@ import { stockDataForPortfolio } from "../../dataSet";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import GetMyStocks from "../../components/MyStocks";
+import { initialAddKey, STOmanipulate } from "../../api/caver";
 
 export default function PortfolioPage() {
-  const dataOwn = stockDataForPortfolio.slice(0, 4);
   const [walletAddress, setWalletAddress] = useState("");
   const [walletBalance, setWalletBalance] = useState(0);
   const [chainId, setChainId] = useState(0);
-  const [nfts, setNfts] = useState(<div></div>);
+
   useEffect(() => {
     getCurrentWalletConneted();
   }, []);
@@ -79,10 +79,20 @@ export default function PortfolioPage() {
         <div className="flex justify-between">
           <p className="text-3xl font-bold ">My Wallet</p>
           <div className=" flex gap-20">
-            <div className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200">
+            <div
+              onClick={() => {
+                initialAddKey();
+              }}
+              className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200"
+            >
               see Previous Transactions
             </div>
-            <div className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200">
+            <div
+              onClick={() => {
+                STOmanipulate();
+              }}
+              className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200"
+            >
               Portfolio
             </div>
           </div>

@@ -16,9 +16,13 @@ export default function GetMyStocks({ address }) {
   };
 
   return (
-    <div className=" w-full flex flex-col gap-2 border-t-4 border-black ">
+    <div className=" w-full flex flex-col gap-2 border-t-2 border-black ">
       {tokens.map((el) => (
-        <Link to="/" className="rounded-md text-center hover:bg-sky-100">
+        <Link
+          to="/"
+          key={el.contractAddress}
+          className="rounded-md text-center hover:bg-sky-100"
+        >
           <div className=" h-16  flex justify-between pt-4">
             <div className="w-2/12 text-xl font-bold">{el.extras.name}</div>
             <div className="w-2/12 overflow-hidden">{el.contractAddress}</div>
