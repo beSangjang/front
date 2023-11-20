@@ -1,11 +1,43 @@
+import { SearchSTOURI } from "./caver";
 const accessKey = process.env.REACT_APP_KAS_ACCESS_KEY;
 const secretKey = process.env.REACT_APP_KAS_SECRET_KEY;
-
 // EOA로 NFTs 가져오기
-export const getStocksByAddress = async () => {
+
+export const getAllStocks = async () => {
   try {
     let dataFetch = await fetch(
-      "https://th-api.klaytnapi.com/v2/account/0x9BB21391928C0d821C670DB770D270000A3b64A7/token?kind=ft&size=10",
+      "https://th-api.klaytnapi.com/v2/account/0x9BB21391928C0d821C670DB770D270000A3b64A7/token?kind=ft&size=100",
+      {
+        method: "GET",
+        headers: new Headers({
+          Authorization: `Basic ` + btoa(`${accessKey}:${secretKey}`),
+          "x-chain-id": 1001,
+        }),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        return data.items;
+      });
+    return dataFetch;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getStockDetail = async (stockAddress) => {
+  try {
+    const getURI = await SearchSTOURI(stockAddress);
+    return getURI;
+  } catch {
+    console.log("ERROR!");
+  }
+};
+
+export const getStocksByAddress = async (walletAddress) => {
+  try {
+    let dataFetch = await fetch(
+      `https://th-api.klaytnapi.com/v2/account/${walletAddress}/token?kind=ft&size=10`,
       {
         method: "GET",
         headers: new Headers({

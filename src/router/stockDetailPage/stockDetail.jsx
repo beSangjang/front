@@ -3,15 +3,31 @@ import { stockDataHeaderDetail } from "../../dataSet";
 import StockGraph from "./components/stockGraph";
 import JaemooGraph from "./components/jaemooGraph";
 import OctagonGraph from "./components/octagonGraph";
-
+import { getStockDetail } from "../../api/kasCall";
+import { useEffect, useState } from "react";
 export default function StockDetail() {
-  const { stockDetail } = useLoaderData();
+  const { stockAddress } = useLoaderData();
 
-  console.log(stockDetail);
+  const [stockDetail, setStockDetail] = useState("");
+  const getDetail = async () => {
+    const CID = await getStockDetail(stockAddress);
+    const jsonData = await fetch(
+      `https://coffee-generous-tahr-8.mypinata.cloud/ipfs/${CID}`
+    ).then((res) => {
+      return res.json();
+    });
+    console.log(jsonData);
+    setStockDetail(jsonData);
+  };
+
+  useEffect(() => {
+    getDetail();
+  }, []);
+
   return (
     <div className="flex flex-col w-8/12 m-auto mt-8">
-      <p className="text-2xl font-bold">{stockDetail.name}</p>
-      <p className="text-3xl font-bold ">{stockDetail.price}</p>
+      <p className="text-2xl font-bold">{stockDetail.companyName}</p>
+      <p className="text-3xl font-bold ">{32322.5}₩</p>
       <p
         className={`text-md font-bold ${
           stockDetail.isPositive ? "text-blue-500" : "text-red-500"
@@ -74,14 +90,16 @@ export default function StockDetail() {
         <p className="pb-2 border-b border-1 ">
           인덱스 번호:{stockDetail.index}
         </p>
-        <p className="pb-2 border-b border-1 ">기업이름:{stockDetail.name}</p>
         <p className="pb-2 border-b border-1 ">
-          사업자 번호:{stockDetail.businessNum}
+          기업이름:{stockDetail.companyName}
         </p>
         <p className="pb-2 border-b border-1 ">
-          설립일:{stockDetail.establishment}
+          사업자 번호:{stockDetail.businessNo}
         </p>
-        <p className="pb-2 border-b border-1 ">대표자:{stockDetail.ceo}</p>
+        <p className="pb-2 border-b border-1 ">
+          설립일:{stockDetail.establishDate}
+        </p>
+        <p className="pb-2 border-b border-1 ">대표자:{stockDetail.CEO}</p>
         <p className="pb-2 border-b border-1 ">산업:{stockDetail.industry}</p>
         <p className="pb-2 border-b border-1 ">
           기업형태:{stockDetail.typeofCompany}
@@ -90,9 +108,9 @@ export default function StockDetail() {
           종업원수:{stockDetail.Employees}
         </p>
         <p className="pb-2 border-b border-1 ">
-          본사주소:{stockDetail.companyAddress}
+          본사주소:{stockDetail.location}
         </p>
-        <p className="">홈페이지:{stockDetail.websiteAddress}</p>
+        <p className="">홈페이지:{stockDetail.website}</p>
       </div>
       <div className="border border-black rounded-lg w-full mt-3 flex flex-col h-80 pl-4 py-4">
         <JaemooGraph></JaemooGraph>
@@ -108,7 +126,7 @@ export default function StockDetail() {
 
 export async function loaderForDetail({ params }) {
   //fetch("서버",{});
-  console.log(params);
-  const stockDetail = stockDataHeaderDetail[params.stockId];
-  return { stockDetail };
+  console.log(params.stockId);
+  const stockAddress = params.stockId;
+  return { stockAddress };
 }
