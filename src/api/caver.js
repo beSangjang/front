@@ -24,7 +24,7 @@ export async function sendKlay(keyring, toAddress, amount) {
   console.log(caver.wallet);
 }
 
-export async function STOmanipulate() {
+export async function SearchSTOURI(stockAddress) {
   const abi = [
     {
       inputs: [
@@ -484,9 +484,7 @@ export async function STOmanipulate() {
       type: "function",
     },
   ];
-  const myContract = caver.contract.create(
-    abi,
-    "0x1670bb7b8ec1ba7ca658037a1fe492950f644d73"
-  );
+  const myContract = caver.contract.create(abi, stockAddress);
   console.log(myContract);
+  return await myContract.call("URI");
 }

@@ -2,7 +2,7 @@ import { stockDataForPortfolio } from "../../dataSet";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import GetMyStocks from "../../components/MyStocks";
-import { initialAddKey, STOmanipulate } from "../../api/caver";
+import { initialAddKey, SearchSTOURI } from "../../api/caver";
 
 export default function PortfolioPage() {
   const [walletAddress, setWalletAddress] = useState("");
@@ -87,12 +87,7 @@ export default function PortfolioPage() {
             >
               see Previous Transactions
             </div>
-            <div
-              onClick={() => {
-                STOmanipulate();
-              }}
-              className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200"
-            >
+            <div className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200">
               Portfolio
             </div>
           </div>

@@ -19,7 +19,7 @@ export default function GetMyStocks({ address }) {
     <div className=" w-full flex flex-col gap-2 border-t-2 border-black ">
       {tokens.map((el) => (
         <Link
-          to="/"
+          to={`/stockDetail/${el.contractAddress}`}
           key={el.contractAddress}
           className="rounded-md text-center hover:bg-sky-100"
         >
