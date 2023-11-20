@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { jsonToPinata } from "../../api/pinataCall.js";
 import { uploadImgToPinata } from "../../api/pinataCall.js";
-import { ethers } from "ethers";
 import { minting, sendSignTx } from "../../contract/minting.js";
 
 const FormData = require("form-data");

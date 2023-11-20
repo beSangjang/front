@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@nivo/core": "^0.83.0",
     "@nivo/line": "^0.83.0",
     "@nivo/radar": "^0.83.0",
@@ -13,7 +14,6 @@
     "axios": "^1.6.0",
     "caver-js": "^1.11.0",
     "caver-js-ext-kas": "^1.12.0",
-    "crypto-js": "^4.2.0",
     "ethers": "^6.8.0",
     "fs": "^0.0.1-security",
     "os": "^0.1.2",
@@ -57,11 +57,11 @@
     "os-browserify": "^0.3.0",
     "process": "^0.11.10",
     "react-app-rewired": "^2.2.1",
+    "react-error-overlay": "6.0.9",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "url": "^0.11.3",
-    "webpack-cli": "^5.1.4",
-    "react-error-overlay": "6.0.9"
+    "webpack-cli": "^5.1.4"
   },
   "browser": {
     "fs": false,
