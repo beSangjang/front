@@ -8,11 +8,15 @@ export default function PortfolioPage() {
   const [walletAddress, setWalletAddress] = useState("");
   const [walletBalance, setWalletBalance] = useState(0);
   const [chainId, setChainId] = useState(0);
+  const [pseudoDollar, setPseudoDollar] = useState(0);
+
+  const changePseudoBalance = (balance) => {
+    setPseudoDollar(balance);
+  };
 
   useEffect(() => {
     getCurrentWalletConneted();
   }, []);
-
   useEffect(() => {
     addWalletListener();
   }, [walletAddress, chainId]);
@@ -49,6 +53,7 @@ export default function PortfolioPage() {
     setWalletAddress(accounts[0]);
     const balance = await provider.getBalance(accounts[0]);
     setWalletBalance(ethers.formatEther(balance));
+    window.location.reload();
   };
 
   const hadleChainChanged = async (chainId) => window.location.reload();
@@ -93,17 +98,23 @@ export default function PortfolioPage() {
           </div>
         </div>
         <p className="text-xl pt-4">
-          <span className=" font-bold">현재 ChainId:</span>
-          {chainId}
+          <span className=" font-bold">Current Chain:</span>
+          {chainId === "0x3e9"
+            ? "Klay BaoBaB"
+            : "make sure to connect with Klaytn Baobob to Use Service"}
+        </p>
+        <p className="text-xl ">
+          <span className=" font-bold">pseudo Dollar:</span>
+          {pseudoDollar} PSDC
         </p>
         <p className="text-xl pb-4 ">
-          <span className=" font-bold">walle Address</span>
+          <span className=" font-bold">wallet Address</span>
           {walletAddress}
         </p>
 
         <div className="text-mg flex">
           <div className="w-1/2">
-            <span className="font-bold">Tokens:</span>
+            <span className="font-bold">Klay:</span>
             {walletBalance}
           </div>
           <div className="w-1/2">
@@ -151,7 +162,10 @@ export default function PortfolioPage() {
               walletAddress === "" ? (
                 <div></div>
               ) : (
-                <GetMyStocks address={walletAddress} />
+                <GetMyStocks
+                  address={walletAddress}
+                  upDateBalance={changePseudoBalance}
+                />
               )
             }
             <button className="ml-10/12 self-center  mt-5 text-lg font-semibold p-2">
