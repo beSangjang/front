@@ -9,7 +9,7 @@ export default function StockDetail() {
   const [isLoading, setIsLoading] = useState(false);
   const { stockAddress } = useLoaderData();
   const [stockDetail, setStockDetail] = useState("");
-
+  const [fold, setFold] = useState(true);
   const stockData = stockDataHeaderDetail.filter(
     (el) => el.walletAddress === stockAddress
   )[0];
@@ -148,9 +148,44 @@ export default function StockDetail() {
           {stockDetail.website}
         </p>
       </div>
-      <div className="border border-black rounded-lg w-full mt-3 flex flex-col h-80 pl-4 py-4">
-        <JaemooGraph></JaemooGraph>
-        재무재표
+      <div className="border border-black rounded-lg w-full mt-3 flex flex-col  pl-4 py-4">
+        <div className="flex  justify-around">
+          <p className="text-2xl font-semibold">Fianacial Statement</p>
+          {fold ? (
+            <div
+              className="hover:cursor-pointer w-16 text-xl border border-black rounded-lg"
+              onClick={() => {
+                setFold(!fold);
+              }}
+            >
+              unfold
+            </div>
+          ) : (
+            <div
+              className="hover:cursor-pointer w-16 text-xl border border-black rounded-lg"
+              onClick={() => {
+                setFold(!fold);
+              }}
+            >
+              fold
+            </div>
+          )}
+        </div>
+        {stockData.financialStatement ? (
+          fold ? (
+            <div className=" text-2xl my-12 h-40 bg-white">
+              unfold to see financial Statment
+            </div>
+          ) : (
+            <JaemooGraph
+              jaemooJson={stockData.financialStatement}
+            ></JaemooGraph>
+          )
+        ) : (
+          <div className="text-2xl font-semibold my-4">
+            This firm hasn't opened its financial statements.
+          </div>
+        )}
       </div>
       <div className="border border-black rounded-lg w-full mt-3 flex flex-col h-80 pl-4 py-4">
         <OctagonGraph></OctagonGraph>
