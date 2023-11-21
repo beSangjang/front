@@ -53,23 +53,15 @@ export default function MintingPage() {
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleImageChange} />
-      {prevImage && <img src={prevImage} alt="Selected" className="w-32" />}
-      <input
-        type="text"
-        placeholder="NFT Name"
-        value={nftName}
-        onChange={(e) => setNftName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="NFT Description"
-        value={nftDescription}
-        onChange={(e) => setNftDescription(e.target.value)}
-      />
-      <button onClick={() => mintNFT(selectedImage)}>Mint NFT</button>
-      {mintingStatus && <p>{mintingStatus}</p>}
-    </div>
+    <iframe
+      src="https://docs.google.zezcom/forms/d/e/1FAIpQLSdnNK-18zAdW1NQXKqA2fO4pc6gL0WlX1ElEhVvMHnyUAg/viewform?embedded=true"
+      width="640"
+      height="700"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0"
+    >
+      로드 중…
+    </iframe>
   );
 }
