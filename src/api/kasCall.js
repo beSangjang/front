@@ -34,7 +34,7 @@ export const getStockDetail = async (stockAddress) => {
     console.log("ERROR!");
   }
 };
-
+// 0xd8cB493ab47d173cB7ecF9952f39Fa78055B775D
 export const getStocksByAddress = async (walletAddress) => {
   try {
     let dataFetch = await fetch(
@@ -56,6 +56,7 @@ export const getStocksByAddress = async (walletAddress) => {
     console.log(e);
   }
 };
+
 // timeStamp 계산
 const timeStamp = (input) => {
   const milliseconds = input * 1000;

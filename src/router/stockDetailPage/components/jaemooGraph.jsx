@@ -151,6 +151,9 @@ export default function JaemooGraph(jaemooJson) {
           </tr>
         </tfoot>
       </table>
+      <p className="text-gray-500">
+        #These are the dummy Datas only for Displaying possibilities.
+      </p>
     </div>
   );
 }

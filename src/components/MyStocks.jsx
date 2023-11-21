@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { getStocksByAddress } from "../api/kasCall.js";
 import { useState, useEffect } from "react";
 
-export default function GetMyStocks({ address }) {
+export default function GetMyStocks({ address, upDateBalance }) {
   const [tokens, setTokens] = useState([]);
 
   useEffect(() => {
@@ -11,8 +11,16 @@ export default function GetMyStocks({ address }) {
 
   const getStocks = async () => {
     const stocks = await getStocksByAddress(address);
-    setTokens(stocks.slice(0, 5));
-    console.log(stocks);
+    const balanStock = stocks.filter(
+      (el) =>
+        el.contractAddress === "0xd8cb493ab47d173cb7ecf9952f39fa78055b775d"
+    );
+    const stockOutbalan = stocks.filter(
+      (el) =>
+        el.contractAddress !== "0xd8cb493ab47d173cb7ecf9952f39fa78055b775d"
+    );
+    if (balanStock) upDateBalance(parseInt(balanStock[0].balance));
+    setTokens(stockOutbalan.slice(0, 5));
   };
 
   return (
