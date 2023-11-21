@@ -1,7 +1,7 @@
 import FlowChart from "../../components/flowChart/flowChart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RawStockBlock from "../../components/rawStockBlock/rawStockBlock";
-
+import { getAllStocks } from "../../api/kasCall";
 import {
   stockDataHeader,
   CategoryData,
@@ -14,9 +14,18 @@ import { Link } from "react-router-dom";
 import NewsBorder from "./component/news/newsBorder";
 
 export default function MainPage() {
-  const tenStock = stockDataHeader.slice(0, 9);
+  useEffect(() => {
+    callData();
+  }, []);
 
-  const [stockData, setStockData] = useState(dummyStocks.recentUpdate);
+  const callData = async () => {
+    setDataFromChain(await getAllStocks());
+  };
+  const tenStock = stockDataHeader.slice(0, 9);
+  const [dataFromChain, setDataFromChain] = useState([]);
+  const [stockData, setStockData] = useState(
+    stockDataHeaderDetail.filter((el) => el.category === "recentUpdate")
+  );
   const [selCategory, setSelCategory] = useState("recentUpdate");
 
   const [currentDetail, setCurrentDetail] = useState(
@@ -25,19 +34,27 @@ export default function MainPage() {
   const callCategory = (e) => {
     //console.log(e.target.id+"클릭됨")
     if (e.target.id === "recentUpdate") {
-      setStockData(dummyStocks.recentUpdate);
+      setStockData(
+        stockDataHeaderDetail.filter((el) => el.category === "recentUpdate")
+      );
       setSelCategory("recentUpdate");
     } else if (e.target.id === "mostPopular") {
-      setStockData(dummyStocks.mostPopular);
+      setStockData(
+        stockDataHeaderDetail.filter((el) => el.category === "mostPopular")
+      );
       setSelCategory("mostPopular");
     } else if (e.target.id === "ipo") {
-      setStockData(dummyStocks.ipo);
+      setStockData(stockDataHeaderDetail.filter((el) => el.category === "ipo"));
       setSelCategory("ipo");
     } else if (e.target.id === "dividend") {
-      setStockData(dummyStocks.dividend);
+      setStockData(
+        stockDataHeaderDetail.filter((el) => el.category === "dividend")
+      );
       setSelCategory("dividend");
     } else if (e.target.id === "marketCap") {
-      setStockData(dummyStocks.marketCap);
+      setStockData(
+        stockDataHeaderDetail.filter((el) => el.category === "marketCap")
+      );
       setSelCategory("marketCap");
     }
   };
@@ -98,7 +115,7 @@ export default function MainPage() {
               <div>
                 Market Cap :$
                 {
-                  currentDetail.totalPrice
+                  currentDetail.totalShare
                   //  시가 총액
                 }
               </div>
@@ -118,7 +135,7 @@ export default function MainPage() {
               </div>
               <Link
                 className="border bg-red-200 py-1 mb-1 border-black self-end w-24 rounded-md"
-                to={`/stockDetail/${currentDetail.index}`}
+                to={`/stockDetail/${currentDetail.walletAddress}`}
               >
                 <div className="text-center">see More</div>
               </Link>

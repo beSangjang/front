@@ -6,9 +6,9 @@ function Category({ data }) {
   return (
     <div>
       <div className="ml-2 text-mg font-semibold flex justify-between border-b border-black">
-        <div>Symbol</div>
-        <div className="flex justify-between w-3/12">
-          <div>Name</div>
+        <div>Name</div>
+        <div className="flex justify-between w-4/12">
+          <div>Market Cap</div>
           <div>Price</div>
         </div>
       </div>
@@ -17,14 +17,14 @@ function Category({ data }) {
         return (
           <Link
             className="m-2 flex w-full h-12  hover:bg-slate-100 rounded-xl"
-            to={`stockDetail/${el.symbol}`}
+            to={`stockDetail/${el.walletAddress}`}
           >
-            <div className="h-full w-full">
-              <div className="flex justify-between">
-                <div>{el.symbol}</div>
-                <div className="flex justify-between w-3/12">
-                  <div>{el.company}</div>
-                  <div>{el.price_2002}$</div>
+            <div className="h-full w-full text-end">
+              <div className="flex justify-between text-xl">
+                <div>{el.name}</div>
+                <div className="flex justify-between w-4/12">
+                  <div>{el.price * el.totalShare}₩</div>
+                  <div>{el.price}₩</div>
                 </div>
               </div>
             </div>
