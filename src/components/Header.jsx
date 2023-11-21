@@ -70,7 +70,7 @@ export default function Header() {
             <Link to={"/aa"}>what is </Link>
           </div>
           <div>
-            <Link to={"/mint"}>mint STo</Link>
+            <Link to={"/mint"}>Information</Link>
           </div>
           <div>
             <button

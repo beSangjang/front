@@ -57,7 +57,7 @@ export default function StockDetail() {
         }`}
       >
         {stockData.isPositive ? "+" : "-"}
-        {3241}₩
+        {241}₩
       </p>
       <div className="flex justify-between gap-8 h-96 my-4">
         <div className="w-8/12 border">
