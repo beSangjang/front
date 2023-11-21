@@ -6,14 +6,21 @@ import OctagonGraph from "./components/octagonGraph";
 import { getStockDetail } from "../../api/kasCall";
 import { useEffect, useState } from "react";
 export default function StockDetail() {
+  const [isLoading, setIsLoading] = useState(false);
   const { stockAddress } = useLoaderData();
-
   const [stockDetail, setStockDetail] = useState("");
+
+  const stockData = stockDataHeaderDetail.filter(
+    (el) => el.walletAddress === stockAddress
+  )[0];
+  console.log(stockData);
   const getDetail = async () => {
+    setIsLoading(true);
     const CID = await getStockDetail(stockAddress);
     const jsonData = await fetch(
       `https://coffee-generous-tahr-8.mypinata.cloud/ipfs/${CID}`
     ).then((res) => {
+      setIsLoading(false);
       return res.json();
     });
     console.log(jsonData);
@@ -26,14 +33,30 @@ export default function StockDetail() {
 
   return (
     <div className="flex flex-col w-8/12 m-auto mt-8">
-      <p className="text-2xl font-bold">{stockDetail.companyName}</p>
-      <p className="text-3xl font-bold ">{32322.5}₩</p>
+      {isLoading ? (
+        <div className="flex justify-center items-center z-10 fixed top-0 left-0 w-screen h-screen  rounded-xl">
+          <div className="pt-2 w-6/12 border  rounded-2xl text-center text-5xl font-extrabold text-white  bg-black border-black">
+            <p className="pt-4">Loading Data from Network</p>
+            <div className=" w-full my-8 ">
+              <img
+                className="w-5/12 top-4 m-auto rounded-lg"
+                src="https://i.pinimg.com/originals/ec/86/1e/ec861e53d36ca3713f30e51f5a8cb62d.gif"
+                alt="waiting"
+              ></img>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div></div>
+      )}
+      <p className="text-3xl font-bold">{stockData.name}</p>
+      <p className="text-4xl font-bold ">{stockData.price}₩</p>
       <p
-        className={`text-md font-bold ${
-          stockDetail.isPositive ? "text-blue-500" : "text-red-500"
+        className={`text-lg font-bold ${
+          stockData.isPositive ? "text-blue-500" : "text-red-500"
         }`}
       >
-        {stockDetail.isPositive ? "+" : "-"}
+        {stockData.isPositive ? "+" : "-"}
         {3241}₩
       </p>
       <div className="flex justify-between gap-8 h-96 my-4">
@@ -43,29 +66,32 @@ export default function StockDetail() {
         <div className="w-4/12 border-2 pl-2 py-3 border-black rounded-md text-md flex flex-col ">
           <p className="border-b py-3">
             Prev.Close:
-            <span className="font-bold"> {stockDetail.endPointWon}</span>
+            <span className="font-bold"> {stockData.endPointWon}</span>
           </p>
           <p className="border-b py-3">
             Current Price:
-            <span className="font-bold">{stockDetail.price}</span>
+            <span className="font-bold">{stockData.price}</span>
           </p>
           <p className="border-b py-3">
             Day's Range:
             <span className="font-bold">
-              {stockDetail.bounderyStart}~{stockDetail.bounderyEnd}
+              {stockData.bounderyStart}~{stockData.bounderyEnd}
             </span>
           </p>
           <p className="border-b py-3">
             Market Cap:
-            <span className="font-bold"> {stockDetail.totalPrice}</span>
+            <span className="font-bold">
+              {" "}
+              {stockData.price * stockData.totalShare}
+            </span>
           </p>
           <p className="border-b py-3">
             EPS:
-            <span className="font-bold"> {stockDetail.incomeByStock}</span>
+            <span className="font-bold"> {stockData.incomeByStock}</span>
           </p>
           <p className="border-b py-3">
             Earning Rate:
-            <span className="font-bold"> {stockDetail.incomeBySalary}</span>
+            <span className="font-bold"> {stockData.incomeBySalary}</span>
           </p>
           <p className="pt-3">
             Recent Transactions:
@@ -73,44 +99,54 @@ export default function StockDetail() {
           </p>
           <Link
             className="border border-black rounded-md self-end mr-4 py-1 px-2 bg-amber-300"
-            to={`/stockDetail/${stockDetail.index}/orderBook`}
+            to={`/stockDetail/${stockDetail.walletAddress}/orderBook`}
           >
             go Trade
           </Link>
         </div>
       </div>
       <div className="border border-black rounded-lg w-full mt-3 flex flex-col pl-4 py-4">
-        <p className="text-xl font-bold">company Info</p>
-        <p className="texl-sm px-4 mb-4">
-          퓨처웍스 컴퍼니는 혁신과 미래를 위한 솔루션을 제공하는 글로벌
-          기업입니다. 우리는 최첨단 기술과 창의적인 아이디어를 결합하여 다양한
-          분야에서 고객의 비즈니스를 향상시키고 지속 가능한 성장을 돕는 데
-          전념하고 있습니다.
+        <p className="text-3xl py-3 font-bold">company Info</p>
+        <p className="text-lg text-gray-700 px-4 mb-4">
+          {stockDetail.introduction}
         </p>
         <p className="pb-2 border-b border-1 ">
-          인덱스 번호:{stockDetail.index}
+          <span className="font-bold">Index:</span>
+          {stockDetail.index}
         </p>
         <p className="pb-2 border-b border-1 ">
-          기업이름:{stockDetail.companyName}
+          <span className="font-bold">company name:</span>
+          {stockDetail.companyName}
         </p>
         <p className="pb-2 border-b border-1 ">
-          사업자 번호:{stockDetail.businessNo}
+          <span className="font-bold">business No:</span>
+          {stockDetail.businessNo}
         </p>
         <p className="pb-2 border-b border-1 ">
-          설립일:{stockDetail.establishDate}
-        </p>
-        <p className="pb-2 border-b border-1 ">대표자:{stockDetail.CEO}</p>
-        <p className="pb-2 border-b border-1 ">산업:{stockDetail.industry}</p>
-        <p className="pb-2 border-b border-1 ">
-          기업형태:{stockDetail.typeofCompany}
+          <span className="font-bold"> established date:</span>
+          {stockDetail.establishDate}
         </p>
         <p className="pb-2 border-b border-1 ">
-          종업원수:{stockDetail.Employees}
+          <span className="font-bold">CEO:</span>
+          {stockDetail.CEO}
+        </p>
+
+        <p className="pb-2 border-b border-1 ">
+          <span className="font-bold"> industry:</span>
+          {stockDetail.industry}
         </p>
         <p className="pb-2 border-b border-1 ">
-          본사주소:{stockDetail.location}
+          <span className="font-bold">number of employees:</span>
+          {stockDetail.numberOfEmployees}
         </p>
-        <p className="">홈페이지:{stockDetail.website}</p>
+        <p className="pb-2 border-b border-1 ">
+          <span className="font-bold">location of HR:</span>
+          {stockDetail.location}
+        </p>
+        <p className="">
+          <span className="font-bold">website:</span>
+          {stockDetail.website}
+        </p>
       </div>
       <div className="border border-black rounded-lg w-full mt-3 flex flex-col h-80 pl-4 py-4">
         <JaemooGraph></JaemooGraph>

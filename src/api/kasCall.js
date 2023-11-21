@@ -6,7 +6,7 @@ const secretKey = process.env.REACT_APP_KAS_SECRET_KEY;
 export const getAllStocks = async () => {
   try {
     let dataFetch = await fetch(
-      "https://th-api.klaytnapi.com/v2/account/0x9BB21391928C0d821C670DB770D270000A3b64A7/token?kind=ft&size=100",
+      "https://th-api.klaytnapi.com/v2/account/0xa7087458E33D97e574C506D18029C8e3d7EafB6e/token?kind=ft&size=100",
       {
         method: "GET",
         headers: new Headers({
@@ -17,6 +17,7 @@ export const getAllStocks = async () => {
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         return data.items;
       });
     return dataFetch;
