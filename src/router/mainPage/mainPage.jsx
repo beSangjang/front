@@ -1,68 +1,91 @@
 import FlowChart from "../../components/flowChart/flowChart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RawStockBlock from "../../components/rawStockBlock/rawStockBlock";
-
-import { stockDataHeader, CategoryData,dummyStocks,stockDataHeaderDetail } from "../../dataSet";
+import { getAllStocks } from "../../api/kasCall";
+import {
+  stockDataHeader,
+  CategoryData,
+  dummyStocks,
+  stockDataHeaderDetail,
+} from "../../dataSet";
 
 import Category from "./component/categori";
 import { Link } from "react-router-dom";
 import NewsBorder from "./component/news/newsBorder";
 
 export default function MainPage() {
-  const tenStock = stockDataHeader.slice(0, 9);
+  useEffect(() => {
+    callData();
+  }, []);
 
-  const [stockData, setStockData] = useState(dummyStocks.recentUpdate);
+  const callData = async () => {
+    setDataFromChain(await getAllStocks());
+  };
+  const tenStock = stockDataHeader.slice(0, 9);
+  const [dataFromChain, setDataFromChain] = useState([]);
+  const [stockData, setStockData] = useState(
+    stockDataHeaderDetail.filter((el) => el.category === "recentUpdate")
+  );
   const [selCategory, setSelCategory] = useState("recentUpdate");
 
-  const [currentDetail,setCurrentDetail]= useState(stockDataHeaderDetail[tenStock[1].index]);
+  const [currentDetail, setCurrentDetail] = useState(
+    stockDataHeaderDetail[tenStock[1].index]
+  );
   const callCategory = (e) => {
     //console.log(e.target.id+"클릭됨")
-    if(e.target.id==="recentUpdate"){
-      setStockData(dummyStocks.recentUpdate);
+    if (e.target.id === "recentUpdate") {
+      setStockData(
+        stockDataHeaderDetail.filter((el) => el.category === "recentUpdate")
+      );
       setSelCategory("recentUpdate");
-    } else if (e.target.id==="mostPopular"){
-      setStockData(dummyStocks.mostPopular);
+    } else if (e.target.id === "mostPopular") {
+      setStockData(
+        stockDataHeaderDetail.filter((el) => el.category === "mostPopular")
+      );
       setSelCategory("mostPopular");
-    } else if (e.target.id==="ipo"){
-      setStockData(dummyStocks.ipo);
+    } else if (e.target.id === "ipo") {
+      setStockData(stockDataHeaderDetail.filter((el) => el.category === "ipo"));
       setSelCategory("ipo");
-    }
-    else if (e.target.id==="dividend"){
-      setStockData(dummyStocks.dividend);
+    } else if (e.target.id === "dividend") {
+      setStockData(
+        stockDataHeaderDetail.filter((el) => el.category === "dividend")
+      );
       setSelCategory("dividend");
-    }
-    else if (e.target.id==="marketCap"){
-      setStockData(dummyStocks.marketCap);
+    } else if (e.target.id === "marketCap") {
+      setStockData(
+        stockDataHeaderDetail.filter((el) => el.category === "marketCap")
+      );
       setSelCategory("marketCap");
     }
   };
-  
-  function changeDetail(data){
+
+  function changeDetail(data) {
     setCurrentDetail(stockDataHeaderDetail[data]);
   }
 
   return (
-
     <div className="flex flex-col w-8/12 m-auto mt-4">
       <FlowChart></FlowChart>
-      
-      <div className="w-full  flex gap-4 mt-8  ">
 
-        <div className="w-8/12 border border-black px-6  rounded-2xl">
-          <div className="text-2xl font-bold  pt-4 pb-3  ">
-            <p className="">관심가질만한 종목들</p>
+      <div className="w-full  flex gap-4 mt-8  ">
+        <div className="w-8/12 border border-black py-3 px-6  rounded-2xl">
+          <div className="text-2xl font-bold  pt-2 pb-4   ">
+            <p className="text-2xl py-2">You may be interested in</p>
           </div>
-          <div className="flex justify-between border-b border-black mb-4 pb-2">
-            <div className="">종목명</div>
+          <div className="flex justify-between border-b border-black mb-4 pb-2 text-xl font-semibold">
+            <div className="">name</div>
             <div className="flex gap-10 justify-between w-44">
-              <div>등락율</div>
-              <div lassName="w-24 text-right">가격</div>
+              <div>Ratio</div>
+              <div className="w-24 text-right">price</div>
             </div>
           </div>
           {tenStock.map((el) => {
             return (
               <div className="pb-4 ">
-                <RawStockBlock stockInfo={el} changeDetail={changeDetail} ></RawStockBlock>
+                <RawStockBlock
+                  stockInfo={el}
+                  changeDetail={changeDetail}
+                ></RawStockBlock>
               </div>
             );
           })}
@@ -74,39 +97,109 @@ export default function MainPage() {
               alt=""
             ></img>
             <div className="flex flex-col gap-3">
-              <div className="mt-2 text-2xl text-bold">{currentDetail.name}</div>
-              <div>전일 종가 :${currentDetail.endPointWon}</div>
-              <div>일일 변동폭 :${currentDetail.bounderyStart} - ${currentDetail.bounderyEnd}</div>
-              <div>시가총액 :${currentDetail.totalPrice}</div>
-              <div>배당수익률 :{currentDetail.incomeBySalary}$</div>
-              <div>주가수익률 :{currentDetail.incomeByStock}$</div>
-              <Link className="border bg-red-200 py-1 mb-1 border-black self-end w-24 rounded-md" to={`/stockDetail/${currentDetail.index}`}>
-                <div className="text-center">
-                자세히 보기
-              </div></Link>
+              <div className="mt-2 text-2xl font-semibold">
+                {currentDetail.name}
+              </div>
+              <div>
+                Prev.Close :$
+                {
+                  currentDetail.endPointWon //전일 종가
+                }
+              </div>
+              <div>
+                Day's Range :${currentDetail.bounderyStart} - $
+                {
+                  currentDetail.bounderyEnd //일일 등락
+                }
+              </div>
+              <div>
+                Market Cap :$
+                {
+                  currentDetail.totalShare
+                  //  시가 총액
+                }
+              </div>
+              <div>
+                PER :
+                {
+                  currentDetail.incomeBySalary //주당 순이익 대비 주가 수준
+                }
+                $
+              </div>
+              <div>
+                EPS :
+                {
+                  currentDetail.incomeByStock //주당 순이익
+                }
+                $
+              </div>
+              <Link
+                className="border bg-red-200 py-1 mb-1 border-black self-end w-24 rounded-md"
+                to={`/stockDetail/${currentDetail.walletAddress}`}
+              >
+                <div className="text-center">see More</div>
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
       <div className="w-full px-6 border border-black rounded-2xl flex gap-4 mt-8  min-h-max flex-col">
-        <div >
-          <p className="my-4 text-2xl font-bold">카테고리</p>
+        <div>
+          <p className="my-4 text-2xl font-bold">Category</p>
           <div className="flex gap-4 my-4 ">
-            <button className={`border-solid rounded-md px-2 py-1 ${selCategory==="recentUpdate"?"font-bold":"nomal"} hover:bg-sky-100`} id="recentUpdate" onClick={(e)=>callCategory(e)}>최근에 등록된</button>
-            <button className={`border-solid rounded-md px-2 py-1 ${selCategory==="mostPopular"?"font-bold":"nomal"} hover:bg-sky-100`} id="mostPopular" onClick={(e) => callCategory(e)}>거래량 많은</button>
-            <button className={`border-solid rounded-md px-2 py-1 ${selCategory==="ipo"?"font-bold":"nomal"} hover:bg-sky-100`} id="ipo" onClick={(e) => callCategory(e)}>IPO를 앞둔</button>
-            <button className={`border-solid rounded-md px-2 py-1 ${selCategory==="dividend"?"font-bold":"nomal"} hover:bg-sky-100`} id="dividend" onClick={(e) => callCategory(e)}>배당일을 앞둔</button>
-            <button className={`border-solid rounded-md px-2 py-1 ${selCategory==="marketCap"?"font-bold":"nomal"} hover:bg-sky-100`} id="marketCap" onClick={(e) => callCategory(e)}>시가총액이 큰</button> 
+            <button
+              className={`border-solid rounded-md px-2 py-1 text-lg ${
+                selCategory === "recentUpdate" ? "font-bold" : "nomal"
+              } hover:bg-sky-100`}
+              id="recentUpdate"
+              onClick={(e) => callCategory(e)}
+            >
+              Recently Uploaded
+            </button>
+            <button
+              className={`border-solid rounded-md px-2 py-1 text-lg ${
+                selCategory === "mostPopular" ? "font-bold" : "nomal"
+              } hover:bg-sky-100`}
+              id="mostPopular"
+              onClick={(e) => callCategory(e)}
+            >
+              High Volume
+            </button>
+            <button
+              className={`border-solid rounded-md px-2 py-1 text-lg  ${
+                selCategory === "ipo" ? "font-bold" : "nomal"
+              } hover:bg-sky-100`}
+              id="ipo"
+              onClick={(e) => callCategory(e)}
+            >
+              IPO Scheduled
+            </button>
+            <button
+              className={`border-solid rounded-md px-2 py-1 text-lg  ${
+                selCategory === "dividend" ? "font-bold" : "nomal"
+              } hover:bg-sky-100`}
+              id="dividend"
+              onClick={(e) => callCategory(e)}
+            >
+              Close Earning Date
+            </button>
+            <button
+              className={`border-solid rounded-md px-2 py-1 text-lg  ${
+                selCategory === "marketCap" ? "font-bold" : "nomal"
+              } hover:bg-sky-100`}
+              id="marketCap"
+              onClick={(e) => callCategory(e)}
+            >
+              High MarketCap
+            </button>
           </div>
           <Category data={stockData}></Category>
           {/*카테고리를 누르면 해당 카테고리에 맞는 STO를 보여줘야 함*/}
         </div>
-
       </div>
-        
-        <NewsBorder />
-      
+
+      <NewsBorder />
     </div>
   );
 }

@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 export default function FlowChartEl({ stockInfo }) {
   return (
-    <div className="w-52 px-8 ">
+    <div className="w-68 px-8 ">
       <Link
-        to={`stockDetail/${stockInfo.index}`}
-        className="flex h-12 rounded-md hover:bg-slate-200 hover:cursor-pointer"
+        to={`stockDetail/${stockInfo.walletAddress}`}
+        className="flex h-16 rounded-md hover:bg-slate-200 hover:cursor-pointer"
       >
         <div className="flex flex-col justify-between">
           <div className="text-xl">{stockInfo.name}</div>

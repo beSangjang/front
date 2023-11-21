@@ -1,22 +1,20 @@
 import { stockDataForPortfolio } from "../../dataSet";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
+import GetMyStocks from "../../components/MyStocks";
+import { initialAddKey, SearchSTOURI } from "../../api/caver";
 
 export default function PortfolioPage() {
-  const dataOwn = stockDataForPortfolio.slice(0, 4);
   const [walletAddress, setWalletAddress] = useState("");
   const [walletBalance, setWalletBalance] = useState(0);
   const [chainId, setChainId] = useState(0);
+
   useEffect(() => {
     getCurrentWalletConneted();
-    console.log(walletAddress);
   }, []);
 
   useEffect(() => {
     addWalletListener();
-    console.log(chainId);
-    console.log(walletAddress);
-    console.log(walletBalance);
   }, [walletAddress, chainId]);
 
   const provider = new ethers.BrowserProvider(window.ethereum);
@@ -30,6 +28,8 @@ export default function PortfolioPage() {
           method: "eth_chainId",
         });
         if (account.length > 0) {
+          // setNfts(<GetMyNFTs address={account[0]}></GetMyNFTs>);
+          //alert 뜸
           setWalletAddress(account[0]);
           const balance = await provider.getBalance(account[0]);
           setWalletBalance(ethers.formatEther(balance));
@@ -75,98 +75,87 @@ export default function PortfolioPage() {
 
   return (
     <div className="flex flex-col w-8/12 mx-auto">
-      <div className="w-full border-black border-2 mt-12 px-12 py-12 rounded-lg flex flex-col gap-2">
+      <div className="w-full border-black border-2 mt-12 px-12 py-10 rounded-lg flex flex-col gap-2">
         <div className="flex justify-between">
-          <p className="text-2xl font-bold ">내 지갑</p>
+          <p className="text-3xl font-bold ">My Wallet</p>
           <div className=" flex gap-20">
-            <div className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200">
-              거래내역
+            <div
+              onClick={() => {
+                initialAddKey();
+              }}
+              className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200"
+            >
+              see Previous Transactions
             </div>
             <div className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200">
-              포트폴리오
+              Portfolio
             </div>
           </div>
         </div>
         <p className="text-xl pt-4">
-          <span className=" font-bold">총자산:</span>
+          <span className=" font-bold">현재 ChainId:</span>
           {chainId}
         </p>
         <p className="text-xl pb-4 ">
-          <span className=" font-bold">지갑 주소</span>
+          <span className=" font-bold">walle Address</span>
           {walletAddress}
         </p>
 
         <div className="text-mg flex">
           <div className="w-1/2">
-            <span className="font-bold">보유 Token:</span>
+            <span className="font-bold">Tokens:</span>
             {walletBalance}
           </div>
           <div className="w-1/2">
-            <span className="font-bold">예상 배당금:</span>
-            {userData.expectSalary}
+            <span className="font-bold">dividend:</span>
+            {
+              walletBalance + 32 //배당
+            }
           </div>
         </div>
         <div className="text-mg flex">
           <div className="w-1/2">
-            <span className="font-bold">총 수익률:</span>
-            {userData.walletAddress}
+            <span className="font-bold">total earn:</span>
+            {walletBalance + 33}%
           </div>
           <div className="w-1/2">
-            <span className="font-bold">수수료:</span>
-            {userData.walletAddress}
+            <span className="font-bold">fee rate:</span>
+            {walletBalance + 34}
           </div>
         </div>
         <div className="text-mg flex">
           <div className="w-1/2">
-            <span className="font-bold">총 매수금</span>
-            {userData.walletAddress}
+            <span className="font-bold">total buy</span>
+            {walletBalance + 35}
           </div>
           <div className="w-1/2">
-            <span className="font-bold">총 매도금</span>
-            {userData.walletAddress}
+            <span className="font-bold">total sell</span>
+            {walletBalance + 36}
           </div>
         </div>
       </div>
 
       <div className="w-full border-black border-2 mt-12 px-12 py-8 rounded-lg flex flex-col gap-2">
-        <p className="text-2xl font-bold my-4">보유 주식</p>
+        <p className="text-2xl font-bold my-4">STO List</p>
         <div className="flex flex-col">
           <div className="flex font-bold text-xl justify-between  text-center my-2">
-            <div className="w-1/6">종목명</div>
-            <div className="w-1/6">잔고 수량</div>
-            <div className="w-1/6">매입가</div>
-            <div className="w-1/6">현재가</div>
-            <div className="w-1/6">평가손익</div>
-            <div className="w-1/6">수익률</div>
+            <div className="w-1/6">name</div>
+            <div className="w-1/6">contractAddress</div>
+            <div className="w-1/6">ticker</div>
+            <div className="w-1/6">amount</div>
           </div>
-          <div className="flex flex-col text-center">
-            {dataOwn.map((el) => {
-              const ratedYeild = (el.priceThen - el.priceNow) * el.amount;
-              return (
-                <div className="flex  text-xl justify-between ">
-                  <div className="w-1/6">{el.name}</div>
-                  <div className="w-1/6">{el.amount}</div>
-                  <div className="w-1/6">{el.priceThen}$</div>
-                  <div className="w-1/6">{el.priceNow}$</div>
-                  <div
-                    className={`w-1/6 ${
-                      ratedYeild >= 0 ? "text-red-400" : "text-blue-400"
-                    }`}
-                  >
-                    {ratedYeild}$
-                  </div>
-                  <div
-                    className={`w-1/6 ${
-                      ratedYeild >= 0 ? "text-red-400" : "text-blue-400"
-                    }`}
-                  >
-                    {el.yieldRate}$
-                  </div>
-                </div>
-              );
-            })}
-            <button className="ml-10/12 self-center  mt-5 text-sm font-semibold p-2">
-              보유주식 더 보기 {">"}
+          <div className="flex flex-col text-center w-full">
+            {
+              // nfts
+              // GetMyNFTs(walletAddress)
+              walletAddress === "" ? (
+                <div></div>
+              ) : (
+                <GetMyStocks address={walletAddress} />
+              )
+            }
+            <button className="ml-10/12 self-center  mt-5 text-lg font-semibold p-2">
+              see more {">"}
             </button>
           </div>
         </div>
@@ -197,18 +186,3 @@ export default function PortfolioPage() {
     </div>
   );
 }
-
-const userData = {
-  walletAddress: "asdf2r23d21wq23eZxzdsaf12e3ds",
-  expectSalary: "12",
-  totalMoney: "32",
-};
-
-// {
-//     name: "Samsung",
-//     ticker: "SAM",
-//     amount: "20",
-//     yieldRate: "-0.05",
-//     priceNow: "$150",
-//     "price then": "$160",
-//   },
