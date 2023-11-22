@@ -1,5 +1,8 @@
 import Caver from "caver-js";
 
+var global = global || window;
+global.Buffer = global.Buffer || require("buffer").Buffer;
+
 const caver = new Caver(process.env.REACT_APP_RPC_URL);
 export async function initialAddKey() {
   const keyring = caver.wallet.keyring.createFromPrivateKey(
