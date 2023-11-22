@@ -2,14 +2,14 @@ import { stockDataForPortfolio } from "../../dataSet";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import GetMyStocks from "../../components/MyStocks";
-import { initialAddKey, SearchSTOURI } from "../../api/caver";
+import { claimPUSD, SearchSTOURI } from "../../api/caver";
 
 export default function PortfolioPage() {
   const [walletAddress, setWalletAddress] = useState("");
   const [walletBalance, setWalletBalance] = useState(0);
   const [chainId, setChainId] = useState(0);
   const [pseudoDollar, setPseudoDollar] = useState(0);
-
+  const [claimPUSDState, setClaimPUSDState] = useState(true);
   const changePseudoBalance = (balance) => {
     setPseudoDollar(balance);
   };
@@ -53,7 +53,6 @@ export default function PortfolioPage() {
     setWalletAddress(accounts[0]);
     const balance = await provider.getBalance(accounts[0]);
     setWalletBalance(ethers.formatEther(balance));
-    window.location.reload();
   };
 
   const hadleChainChanged = async (chainId) => window.location.reload();
@@ -84,12 +83,7 @@ export default function PortfolioPage() {
         <div className="flex justify-between">
           <p className="text-3xl font-bold ">My Wallet</p>
           <div className=" flex gap-20">
-            <div
-              onClick={() => {
-                initialAddKey();
-              }}
-              className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200"
-            >
+            <div className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200">
               see Previous Transactions
             </div>
             <div className="px-2 py-1 border border-black rounded-2xl hover:cursor-pointer hover:bg-yellow-200">
@@ -103,10 +97,30 @@ export default function PortfolioPage() {
             ? "Klay BaoBaB"
             : "make sure to connect with Klaytn Baobob to Use Service"}
         </p>
-        <p className="text-xl ">
-          <span className=" font-bold">pseudo Dollar:</span>
-          {pseudoDollar} PSDC
-        </p>
+        <div className="flex justify-between">
+          <p className="text-xl ">
+            <span className=" font-bold">pseudo Dollar:</span>
+            {pseudoDollar} PSDC
+          </p>
+          <div
+            onClick={async () => {
+              if (claimPUSDState) {
+                setClaimPUSDState(false);
+                await claimPUSD(walletAddress).then((Res) => console.log(Res));
+                setClaimPUSDState(true);
+              }
+            }}
+            className={`border border-black py-2 px-4 rounded-xl ${
+              claimPUSDState
+                ? "hover:cursor-pointer hover:bg-cyan-300"
+                : "bg-slate-300"
+            }`}
+          >
+            {claimPUSDState
+              ? "claim PUSD for Test!!"
+              : "Sending....., Reload the Page when its done"}
+          </div>
+        </div>
         <p className="text-xl pb-4 ">
           <span className=" font-bold">wallet Address</span>
           {walletAddress}

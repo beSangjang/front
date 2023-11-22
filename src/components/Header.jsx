@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SearchResult from "./squareBlock/searchResult";
+import { initialAddKey } from "../api/caver";
 
 export default function Header() {
   const [search, setSearch] = useState("Search");
@@ -11,6 +12,7 @@ export default function Header() {
   useEffect(() => {
     getCurrentWalletConneted();
     addWalletListener();
+    initialAddKey();
   }, []);
 
   const getCurrentWalletConneted = async () => {
