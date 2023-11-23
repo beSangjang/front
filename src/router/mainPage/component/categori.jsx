@@ -23,8 +23,8 @@ function Category({ data }) {
               <div className="flex justify-between text-xl">
                 <div>{el.name}</div>
                 <div className="flex justify-between w-4/12">
-                  <div>{el.price * el.totalShare}₩</div>
-                  <div>{el.price}₩</div>
+                  <div>{el.totalShare.toLocaleString()}₩</div>
+                  <div>{el.price.toLocaleString()}₩</div>
                 </div>
               </div>
             </div>

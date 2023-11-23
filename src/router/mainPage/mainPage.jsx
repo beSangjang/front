@@ -107,29 +107,29 @@ export default function MainPage() {
                 }
               </div>
               <div>
-                Day's Range :${currentDetail.bounderyStart} - $
+                Day's Range :${currentDetail.bounderyStart.toLocaleString()} - $
                 {
-                  currentDetail.bounderyEnd //일일 등락
+                  currentDetail.bounderyEnd.toLocaleString() //일일 등락
                 }
               </div>
               <div>
                 Market Cap :$
                 {
-                  currentDetail.totalShare
+                  currentDetail.totalShare.toLocaleString()
                   //  시가 총액
                 }
               </div>
               <div>
                 PER :
                 {
-                  currentDetail.incomeBySalary //주당 순이익 대비 주가 수준
+                  currentDetail.incomeBySalary.toLocaleString() //주당 순이익 대비 주가 수준
                 }
                 $
               </div>
               <div>
                 EPS :
                 {
-                  currentDetail.incomeByStock //주당 순이익
+                  currentDetail.incomeByStock.toLocaleString() //주당 순이익
                 }
                 $
               </div>

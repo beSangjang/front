@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const Accordion = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
@@ -63,6 +64,7 @@ const App = () => {
       <GoogleForm />
       <Accordion />
     </div>
+
   );
 };
 
