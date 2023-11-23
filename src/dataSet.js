@@ -190,8 +190,9 @@ export const stockDataHeaderDetail = [
   {
     name: "VirtualRealityTechHub",
     walletAddress: "0x8446fb6d176d619ff77058cbc49db2ad30b638ad",
+    orderBookContract: "0x2490B70d35a9bdeAC189564a237F7111B2D4Dc6f",
     isPositive: true,
-    price: 2455,
+    price: 4,
     endPointWon: 132.22,
     bounderyStart: 128.95,
     bounderyEnd: 133.31,

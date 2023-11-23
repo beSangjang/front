@@ -6,6 +6,7 @@ import { loaderForDetail } from "./stockDetailPage/stockDetail";
 import OrderBook from "./orderBook/OrderBook";
 import PortfolioPage from "./portfolio/Portfolio";
 import MintingPage from "./mintNFT/Minting";
+import { loaderForOrderBook } from "./orderBook/OrderBook";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,7 +18,11 @@ const router = createBrowserRouter([
         element: <StockDetail />,
         loader: loaderForDetail,
       },
-      { path: "stockDetail/:stockId/orderBook", element: <OrderBook /> },
+      {
+        path: "stockDetail/orderBook/:stockId",
+        element: <OrderBook />,
+        loader: loaderForOrderBook,
+      },
       {
         path: "myPortfolio/",
         element: <PortfolioPage />,

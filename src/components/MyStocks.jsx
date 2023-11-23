@@ -19,7 +19,8 @@ export default function GetMyStocks({ address, upDateBalance }) {
     if (balanStock.length !== 0) {
       stockOutbalan = stocks.filter(
         (el) =>
-          el.contractAddress !== "0x5eac59edadee5f59148d396c241117bbba14c220"
+          el.contractAddress !== "0x5eac59edadee5f59148d396c241117bbba14c220" &&
+          el.contractAddress !== "0xd8cb493ab47d173cb7ecf9952f39fa78055b775d"
       );
       upDateBalance(parseInt(balanStock[0].balance));
     } else {

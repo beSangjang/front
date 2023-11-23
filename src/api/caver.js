@@ -964,14 +964,467 @@ async function createCaverForPUSD() {
   );
   return myContract;
 }
+
 export async function claimPUSD(walletAddress) {
   const myContract = await createCaverForPUSD();
 
   console.log(myContract);
-  const aa = await myContract.send(
+  const contractBill = await myContract.send(
     { from: "0xa7087458E33D97e574C506D18029C8e3d7EafB6e", gas: 100000 },
     "claimForTest",
     walletAddress
   );
-  return aa;
+
+  return contractBill;
+}
+export async function generateOrderBookContract(orderBookContract) {
+  const abi = [
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_tradeToken",
+          type: "address",
+        },
+        {
+          internalType: "address",
+          name: "_baseToken",
+          type: "address",
+        },
+      ],
+      stateMutability: "nonpayable",
+      type: "constructor",
+    },
+    {
+      inputs: [],
+      name: "ReentrancyGuardReentrantCall",
+      type: "error",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "uint256",
+          name: "orderId",
+          type: "uint256",
+        },
+        {
+          indexed: true,
+          internalType: "address",
+          name: "trader",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "bool",
+          name: "isBuyOrder",
+          type: "bool",
+        },
+      ],
+      name: "OrderCanceled",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "uint256",
+          name: "buyOrderId",
+          type: "uint256",
+        },
+        {
+          indexed: true,
+          internalType: "uint256",
+          name: "sellOrderId",
+          type: "uint256",
+        },
+        {
+          indexed: true,
+          internalType: "address",
+          name: "buyer",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "address",
+          name: "seller",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "price",
+          type: "uint256",
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "quantity",
+          type: "uint256",
+        },
+      ],
+      name: "TradeExecuted",
+      type: "event",
+    },
+    {
+      inputs: [],
+      name: "baseToken",
+      outputs: [
+        {
+          internalType: "contract IKIP7",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      name: "buyOrders",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "id",
+          type: "uint256",
+        },
+        {
+          internalType: "address",
+          name: "trader",
+          type: "address",
+        },
+        {
+          internalType: "bool",
+          name: "isBuyOrder",
+          type: "bool",
+        },
+        {
+          internalType: "uint256",
+          name: "price",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "quantity",
+          type: "uint256",
+        },
+        {
+          internalType: "bool",
+          name: "isFilled",
+          type: "bool",
+        },
+        {
+          internalType: "address",
+          name: "baseToken",
+          type: "address",
+        },
+        {
+          internalType: "address",
+          name: "quoteToken",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "orderId",
+          type: "uint256",
+        },
+        {
+          internalType: "bool",
+          name: "isBuyOrder",
+          type: "bool",
+        },
+      ],
+      name: "cancelOrder",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "orderId",
+          type: "uint256",
+        },
+      ],
+      name: "getBuyOrderIndex",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "orderId",
+          type: "uint256",
+        },
+      ],
+      name: "getSellOrderIndex",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "price",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "quantity",
+          type: "uint256",
+        },
+        {
+          internalType: "address",
+          name: "tokenTrade",
+          type: "address",
+        },
+        {
+          internalType: "address",
+          name: "tokenBase",
+          type: "address",
+        },
+      ],
+      name: "placeBuyOrder",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "price",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "quantity",
+          type: "uint256",
+        },
+        {
+          internalType: "address",
+          name: "tokenTrade",
+          type: "address",
+        },
+        {
+          internalType: "address",
+          name: "tokenBase",
+          type: "address",
+        },
+      ],
+      name: "placeSellOrder",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      name: "sellOrders",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "id",
+          type: "uint256",
+        },
+        {
+          internalType: "address",
+          name: "trader",
+          type: "address",
+        },
+        {
+          internalType: "bool",
+          name: "isBuyOrder",
+          type: "bool",
+        },
+        {
+          internalType: "uint256",
+          name: "price",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "quantity",
+          type: "uint256",
+        },
+        {
+          internalType: "bool",
+          name: "isFilled",
+          type: "bool",
+        },
+        {
+          internalType: "address",
+          name: "baseToken",
+          type: "address",
+        },
+        {
+          internalType: "address",
+          name: "quoteToken",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "tradeToken",
+      outputs: [
+        {
+          internalType: "contract IKIP7",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "viewAllOrders",
+      outputs: [
+        {
+          components: [
+            {
+              internalType: "uint256",
+              name: "id",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "trader",
+              type: "address",
+            },
+            {
+              internalType: "bool",
+              name: "isBuyOrder",
+              type: "bool",
+            },
+            {
+              internalType: "uint256",
+              name: "price",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "quantity",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isFilled",
+              type: "bool",
+            },
+            {
+              internalType: "address",
+              name: "baseToken",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "quoteToken",
+              type: "address",
+            },
+          ],
+          internalType: "struct orderBook.Order[]",
+          name: "",
+          type: "tuple[]",
+        },
+        {
+          components: [
+            {
+              internalType: "uint256",
+              name: "id",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "trader",
+              type: "address",
+            },
+            {
+              internalType: "bool",
+              name: "isBuyOrder",
+              type: "bool",
+            },
+            {
+              internalType: "uint256",
+              name: "price",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "quantity",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isFilled",
+              type: "bool",
+            },
+            {
+              internalType: "address",
+              name: "baseToken",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "quoteToken",
+              type: "address",
+            },
+          ],
+          internalType: "struct orderBook.Order[]",
+          name: "",
+          type: "tuple[]",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+  ];
+  const myContract = caver.contract.create(abi, orderBookContract);
+  return myContract;
+}
+export async function browseOrderBook(orderBookContract) {
+  const myContract = await generateOrderBookContract(orderBookContract);
+  const contractBill = await myContract.send(
+    { from: "0xa7087458E33D97e574C506D18029C8e3d7EafB6e", gas: 1000000 },
+    "viewAllOrders"
+  );
+  return contractBill;
 }

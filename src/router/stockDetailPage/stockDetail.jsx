@@ -100,7 +100,7 @@ export default function StockDetail() {
           </p>
           <Link
             className="border border-black rounded-md self-end mr-4 py-1 px-2 bg-amber-300"
-            to={`/stockDetail/${stockDetail.walletAddress}/orderBook`}
+            to={`/stockDetail/orderBook/${stockAddress}`}
           >
             go Trade
           </Link>
