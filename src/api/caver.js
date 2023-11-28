@@ -1911,12 +1911,12 @@ export async function placeBuyOrder(
   walletAddress,
   walletPrivate
 ) {
-  // const keyring = caver.wallet.keyring.create(`${walletAddress}`, [
-  //   [`0x${walletPrivate}`],
-  //   [`0x${walletPrivate}`],
-  //   [`0x${process.env.REACT_APP_WALLET_PRIVATE_KEY}`],
-  // ]);
-  // caver.wallet.add(keyring);
+  const keyring = caver.wallet.keyring.create(`${walletAddress}`, [
+    [`0x${walletPrivate}`],
+    [`0x${walletPrivate}`],
+    [`0x${process.env.REACT_APP_WALLET_PRIVATE_KEY}`],
+  ]);
+  caver.wallet.add(keyring);
   const tradeToken = await createCaverForPUSD();
   console.log(tradeToken);
 
@@ -1954,12 +1954,12 @@ export async function placeSellOrder(
   walletPrivate
 ) {
   console.log(walletAddress);
-  // const keyring = caver.wallet.keyring.create(`${walletAddress}`, [
-  //   [`0x${walletPrivate}`],
-  //   [`0x${walletPrivate}`],
-  //   [`0x${process.env.REACT_APP_WALLET_PRIVATE_KEY}`],
-  // ]);
-  // caver.wallet.add(keyring);
+  const keyring = caver.wallet.keyring.create(`${walletAddress}`, [
+    [`0x${walletPrivate}`],
+    [`0x${walletPrivate}`],
+    [`0x${process.env.REACT_APP_WALLET_PRIVATE_KEY}`],
+  ]);
+  caver.wallet.add(keyring);
   const baseToken = await createCaverForTrade(tokenBase);
   console.log(walletAddress);
 
