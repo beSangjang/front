@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import OrderCell from "./component/orderCell";
 import OrderCallPrompt from "./component/orderCallPrompt";
+import Loading from "../../components/loading/Loading";
 
 export default function OrderBook() {
   const { stockAddress } = useLoaderData();
@@ -22,6 +23,10 @@ export default function OrderBook() {
   const [sellPrice, setSellPrice] = useState(14);
   const [sellQuantity, setSellQuantity] = useState(800);
   const [callPrompt, setCallPrompt] = useState(<div></div>);
+  const [isLoading, setIsLoading] = useState(false);
+  const [graphHeight, setGraphHeight] = useState(0);
+  const [graphSell, setGraphSell] = useState([]);
+  const [graphBuy, setGraphBuy] = useState([]);
 
   const cancelPrompt = () => {
     setCallPrompt(<div></div>);
@@ -46,14 +51,82 @@ export default function OrderBook() {
     getCurrentWalletConneted();
   }, []);
 
+  const orderAggregator = (list, isSell) => {
+    if (list.length === 0) {
+      return [];
+    }
+    const orderList = [];
+    if (isSell) {
+      const basePrice = parseInt(list[0].price);
+      console.log(basePrice);
+      for (let i = 0; i < 12; i++) {
+        orderList.push({
+          quantity: 0,
+          price: basePrice + i,
+        });
+        for (let j = 0; j < list.length; j++) {
+          if (orderList[i].price === parseInt(list[j].price)) {
+            orderList[i].quantity += parseInt(list[j].quantity);
+          }
+        }
+      }
+      for (let j = 0; j < list.length; j++) {
+        if (orderList[11].price < parseInt(list[j].price)) {
+          orderList[11].quantity += parseInt(list[j].quantity);
+        }
+      }
+    } else {
+      const basePrice = parseInt(list[0].price);
+      console.log(basePrice);
+      for (let i = 0; basePrice - i > 0 && i < 12; i++) {
+        orderList.push({
+          quantity: 0,
+          price: basePrice - i,
+        });
+        for (let j = 0; j < list.length; j++) {
+          if (orderList[i].price === parseInt(list[j].price)) {
+            orderList[i].quantity += parseInt(list[j].quantity);
+          }
+          console.log(orderList);
+        }
+      }
+      for (let j = 0; j < list.length; j++) {
+        if (orderList[11].price > parseInt(list[j].price)) {
+          orderList[11].quantity += parseInt(list[j].quantity);
+        }
+      }
+    }
+    return orderList;
+  };
+
   const initOrderBook = async () => {
     const orderBookList = await browseOrderBook(stockInfo.orderBookContract);
-    console.log(orderBookList[0][0]);
-    setBuyOrderBookList(orderBookList[0].filter((el) => el.quantity !== "0"));
-    setSellOrderBookList(orderBookList[1].filter((el) => el.quantity !== "0"));
+    let biggestAmount = 0;
+    console.log(orderBookList);
+    const sellOrders = orderBookList[1].filter((el) => el.quantity !== "0");
+    const buyOrders = orderBookList[0].filter((el) => el.quantity !== "0");
+
+    for (let i = 0; i < orderBookList[0].length; i++) {
+      if (biggestAmount < orderBookList[0][i].quantity) {
+        biggestAmount = orderBookList[0][i].quantity;
+      }
+    }
+    for (let i = 0; i < orderBookList[1].length; i++) {
+      if (biggestAmount <= parseInt(orderBookList[1][i].quantity)) {
+        biggestAmount = orderBookList[1][i].quantity;
+        console.log(biggestAmount, orderBookList[1][i].quantity);
+      }
+    }
+    setGraphHeight(12 / biggestAmount);
+
+    setGraphSell(orderAggregator(sellOrders, true));
+    setGraphBuy(orderAggregator(buyOrders, false));
+    setBuyOrderBookList(buyOrders);
+    setSellOrderBookList(sellOrders);
   };
 
   const buyCall = async (walletPrivate) => {
+    setIsLoading(true);
     let result;
     console.log(walletAddress);
     console.log(buyPrice);
@@ -73,11 +146,14 @@ export default function OrderBook() {
       console.log(error);
     } finally {
       console.log(result);
+      setIsLoading(false);
       window.location.reload();
     }
   };
 
   const sellCall = async (walletPrivate) => {
+    setIsLoading(true);
+
     let result;
     try {
       result = await placeSellOrder(
@@ -93,6 +169,7 @@ export default function OrderBook() {
       console.log(error);
     } finally {
       window.location.reload();
+      setIsLoading(false);
     }
   };
 
@@ -102,6 +179,7 @@ export default function OrderBook() {
   // console.log(stockInfo);
   return (
     <div className="w-9/12 m-auto  rounded-md">
+      {isLoading ? <Loading /> : <div></div>}
       {callPrompt}
       <div className="flex justify-around text-center my-2">
         <div>
@@ -122,7 +200,7 @@ export default function OrderBook() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col  text-center font-semibold m-auto mt-8 text-2xl shadow-lg">
+      <div className="flex flex-col  text-center font-semibold m-auto mt-8 text-2xl shadow-lg rounded-lg">
         <div className="flex justify-around">
           <div className="py-8 w-4/12 text-red-500 ">
             <p>Best Bid</p>
@@ -134,105 +212,25 @@ export default function OrderBook() {
           </div>
         </div>
         <div className="w-11/12 m-auto mb-8 h-80 bg-zinc-50 flex ">
-          <div className="w-1/2 flex items-end justify-center">
-            <div
-              style={{ height: 1 * 1 + "em" }}
-              className={`bg-red-500 w-1/12  hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-200 `}
-            ></div>
-            <div
-              style={{ height: 1 * 2 + "em" }}
-              className={`bg-red-500 w-1/12  hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 1 + "em" }}
-              className={`bg-red-500 w-1/12  hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-100 `}
-            ></div>
-            <div
-              style={{ height: 1 * 1 + "em" }}
-              className={`bg-red-500 w-1/12  hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-100 `}
-            ></div>
-            <div
-              style={{ height: 1 * 1 + "em" }}
-              className={`bg-red-500 w-1/12   hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 1 + "em" }}
-              className={`bg-red-500 w-1/12   hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 1 + "em" }}
-              className={`bg-red-500 w-1/12  hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 1 + "em" }}
-              className={`bg-red-500 w-1/12  hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 1 + "em" }}
-              className={`bg-red-500 w-1/12  hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 1 + "em" }}
-              className={`bg-red-500 w-1/12  hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 5 + "em" }}
-              className={`bg-red-500 w-1/12  hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 2 + "em" }}
-              className={`bg-red-500 w-1/12  hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-100 `}
-            ></div>
+          <div className="w-1/2 flex flex-row-reverse items-end justify-center">
+            {graphBuy.map((el) => {
+              return (
+                <div
+                  style={{ height: 1 * (el.quantity * graphHeight) + "em" }}
+                  className={`border border-red-700 bg-red-500 w-1/12  hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-100 `}
+                ></div>
+              );
+            })}
           </div>
           <div className="w-1/2 flex items-end">
-            <div
-              style={{ height: 1 * 2 + "em" }}
-              className={`bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100 `}
-            ></div>
-            <div
-              style={{ height: 1 * 7 + "em" }}
-              className={`bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 5 + "em" }}
-              className={`bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 3 + "em" }}
-              className={`bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 1 + "em" }}
-              className={`bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 7 + "em" }}
-              className={`bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 5 + "em" }}
-              className={`bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 2 + "em" }}
-              className={`bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 3 + "em" }}
-              className={`bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 1 + "em" }}
-              className={`bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 3 + "em" }}
-              className={`bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
-            <div
-              style={{ height: 1 * 1 + "em" }}
-              className={`bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100`}
-            ></div>
+            {graphSell.map((el) => {
+              return (
+                <div
+                  style={{ height: 1 * (el.quantity * graphHeight) + "em" }}
+                  className={`border border-blue-700 bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100 `}
+                ></div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -330,7 +328,7 @@ export default function OrderBook() {
           </div>
         </div>
       </div>
-      <div className="flex mt-4 shadow-xl">
+      <div className="flex mt-4 shadow-xl mb-12">
         <div className="flex-col w-1/2">
           <div className="flex justify-around text-xl sha font-semibold border-r-2 py-1 border-black">
             <div>size</div>

@@ -12,7 +12,7 @@ export default function OrderCallPrompt({
   const [privateKey, setPrivateKey] = useState("");
 
   return (
-    <div className="fixed top-0 left-0 w-screen h-screen ">
+    <div className="z-10 fixed top-0 left-0 w-screen h-screen ">
       <div className="m-auto flex w-10/12 h-5/6 mt-10 z-999 py-8 bg-white rounded-xl  border border-black">
         <div className="m-auto w-7/12 px-6 h-full border border-black bg-white text-center overflow-scroll rounded-xl">
           <p className="text-2xl my-12 font-bold">SHARE TRANSFER AGREEMENT</p>
