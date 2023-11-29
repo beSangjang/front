@@ -71,8 +71,10 @@ export default function OrderBook() {
         }
       }
       for (let j = 0; j < list.length; j++) {
-        if (orderList[11].price < parseInt(list[j].price)) {
-          orderList[11].quantity += parseInt(list[j].quantity);
+        if (orderList[orderList.length - 1].price < parseInt(list[j].price)) {
+          orderList[orderList.length - 1].quantity += parseInt(
+            list[j].quantity
+          );
         }
       }
     } else {
@@ -87,12 +89,13 @@ export default function OrderBook() {
           if (orderList[i].price === parseInt(list[j].price)) {
             orderList[i].quantity += parseInt(list[j].quantity);
           }
-          console.log(orderList);
         }
       }
       for (let j = 0; j < list.length; j++) {
-        if (orderList[11].price > parseInt(list[j].price)) {
-          orderList[11].quantity += parseInt(list[j].quantity);
+        if (orderList[orderList.length - 1].price > parseInt(list[j].price)) {
+          orderList[orderList.length - 1].quantity += parseInt(
+            list[j].quantity
+          );
         }
       }
     }
@@ -118,7 +121,7 @@ export default function OrderBook() {
       }
     }
     setGraphHeight(12 / biggestAmount);
-
+    console.log(sellOrders);
     setGraphSell(orderAggregator(sellOrders, true));
     setGraphBuy(orderAggregator(buyOrders, false));
     setBuyOrderBookList(buyOrders);
@@ -147,7 +150,7 @@ export default function OrderBook() {
     } finally {
       console.log(result);
       setIsLoading(false);
-      window.location.reload();
+      // window.location.reload();
     }
   };
 
@@ -168,8 +171,8 @@ export default function OrderBook() {
     } catch (error) {
       console.log(error);
     } finally {
-      window.location.reload();
       setIsLoading(false);
+      // window.location.reload();
     }
   };
 
@@ -204,19 +207,23 @@ export default function OrderBook() {
         <div className="flex justify-around">
           <div className="py-8 w-4/12 text-red-500 ">
             <p>Best Bid</p>
-            <p className="text-3xl font-extrabold">322$</p>
+            <p className="text-3xl font-extrabold">
+              {graphBuy.length != 0 ? graphBuy[0].price : 0}$
+            </p>
           </div>
           <div className="py-8 w-4/12 text-blue-500">
             <p>Best Ask</p>
-            <p className="text-3xl font-extrabold ">324$</p>
+            <p className="text-3xl font-extrabold ">
+              {graphSell.length != 0 ? graphSell[0].price : 0}$
+            </p>
           </div>
         </div>
         <div className="w-11/12 m-auto mb-8 h-80 bg-zinc-50 flex ">
-          <div className="w-1/2 flex flex-row-reverse items-end justify-center">
+          <div className="w-1/2 flex flex-row-reverse items-end justify-start">
             {graphBuy.map((el) => {
               return (
                 <div
-                  style={{ height: 1 * (el.quantity * graphHeight) + "em" }}
+                  style={{ height: el.quantity * graphHeight + "em" }}
                   className={`border border-red-700 bg-red-500 w-1/12  hover:bg-red-600 hover:-translate-y-1 hover:scale-110 duration-100 `}
                 ></div>
               );
@@ -226,7 +233,7 @@ export default function OrderBook() {
             {graphSell.map((el) => {
               return (
                 <div
-                  style={{ height: 1 * (el.quantity * graphHeight) + "em" }}
+                  style={{ height: el.quantity * graphHeight + "em" }}
                   className={`border border-blue-700 bg-blue-500 w-1/12  hover:bg-blue-600 hover:-translate-y-1 hover:scale-110 duration-100 `}
                 ></div>
               );
@@ -264,17 +271,23 @@ export default function OrderBook() {
             <button
               className="mr-8 mt-4 border  rounded-3xl hover:text-red-700 py-2 px-1 text-sm"
               onClick={() => {
-                return setCallPrompt(
-                  <OrderCallPrompt
-                    nameOfStock={stockInfo.name}
-                    isSell={false}
-                    price={buyPrice}
-                    quantity={buyQuantity}
-                    sellCallFunction={sellCall}
-                    buyCallFunction={buyCall}
-                    cancelPrompt={cancelPrompt}
-                  />
-                );
+                if (graphSell.length === 0 || buyPrice > graphSell[0].price) {
+                  return alert(
+                    "price of BuyCall  shouldn't be over Best SellCall!"
+                  );
+                } else {
+                  setCallPrompt(
+                    <OrderCallPrompt
+                      nameOfStock={stockInfo.name}
+                      isSell={false}
+                      price={buyPrice}
+                      quantity={buyQuantity}
+                      sellCallFunction={sellCall}
+                      buyCallFunction={buyCall}
+                      cancelPrompt={cancelPrompt}
+                    />
+                  );
+                }
               }}
             >
               Place Buy Call
@@ -310,17 +323,23 @@ export default function OrderBook() {
             <button
               className="mr-8 mt-4 border  rounded-3xl hover:text-red-700 py-2 px-1 text-sm"
               onClick={() => {
-                return setCallPrompt(
-                  <OrderCallPrompt
-                    nameOfStock={stockInfo.name}
-                    isSell={true}
-                    price={sellPrice}
-                    quantity={sellQuantity}
-                    sellCallFunction={sellCall}
-                    buyCallFunction={buyCall}
-                    cancelPrompt={cancelPrompt}
-                  />
-                );
+                if (graphSell.length === 0 || sellPrice < graphBuy[0].price) {
+                  return alert(
+                    "price of sellCall  shouldn't be over Best buyCall!"
+                  );
+                } else {
+                  setCallPrompt(
+                    <OrderCallPrompt
+                      nameOfStock={stockInfo.name}
+                      isSell={true}
+                      price={sellPrice}
+                      quantity={sellQuantity}
+                      sellCallFunction={sellCall}
+                      buyCallFunction={buyCall}
+                      cancelPrompt={cancelPrompt}
+                    />
+                  );
+                }
               }}
             >
               place Sell Call

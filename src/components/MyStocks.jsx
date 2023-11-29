@@ -27,7 +27,8 @@ export default function GetMyStocks({ address, upDateBalance }) {
       stockOutbalan = stocks;
     }
     console.log(balanStock);
-    setTokens(stockOutbalan.slice(0, 5));
+    //stockOutbalan.slice(0, 5)
+    setTokens(stockOutbalan);
   };
 
   return (

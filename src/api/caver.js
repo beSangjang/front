@@ -1445,27 +1445,6 @@ export async function claimPUSD(walletAddress) {
 export async function generateOrderBookContract(orderBookContract) {
   const abi = [
     {
-      inputs: [
-        {
-          internalType: "address",
-          name: "_tradeToken",
-          type: "address",
-        },
-        {
-          internalType: "address",
-          name: "_stableToken",
-          type: "address",
-        },
-      ],
-      stateMutability: "nonpayable",
-      type: "constructor",
-    },
-    {
-      inputs: [],
-      name: "ReentrancyGuardReentrantCall",
-      type: "error",
-    },
-    {
       anonymous: false,
       inputs: [
         {
@@ -1667,7 +1646,7 @@ export async function generateOrderBookContract(orderBookContract) {
           type: "uint256",
         },
       ],
-      name: "getBuyOrderIndex",
+      name: "getAskOrderIndex",
       outputs: [
         {
           internalType: "uint256",
@@ -1686,7 +1665,7 @@ export async function generateOrderBookContract(orderBookContract) {
           type: "uint256",
         },
       ],
-      name: "getSellOrderIndex",
+      name: "getBidOrderIndex",
       outputs: [
         {
           internalType: "uint256",
@@ -1755,32 +1734,6 @@ export async function generateOrderBookContract(orderBookContract) {
     },
     {
       inputs: [],
-      name: "stableToken",
-      outputs: [
-        {
-          internalType: "contract IKIP7",
-          name: "",
-          type: "address",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "tradeToken",
-      outputs: [
-        {
-          internalType: "contract IKIP7",
-          name: "",
-          type: "address",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [],
       name: "viewAllOrders",
       outputs: [
         {
@@ -1826,7 +1779,7 @@ export async function generateOrderBookContract(orderBookContract) {
               type: "address",
             },
           ],
-          internalType: "struct orderBook.Order[]",
+          internalType: "struct orderbook.Order[]",
           name: "",
           type: "tuple[]",
         },
@@ -1873,7 +1826,7 @@ export async function generateOrderBookContract(orderBookContract) {
               type: "address",
             },
           ],
-          internalType: "struct orderBook.Order[]",
+          internalType: "struct orderbook.Order[]",
           name: "",
           type: "tuple[]",
         },

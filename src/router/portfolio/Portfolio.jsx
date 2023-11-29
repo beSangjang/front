@@ -200,17 +200,6 @@ export default function PortfolioPage() {
           <div className="w-1/6">Netflix</div>
         </div>
       </div>
-      <div className="w-full border-black border-2 mt-12 px-12 py-8 rounded-lg flex flex-col gap-2">
-        <p className="text-2xl font-bold ">대기중인 내 주문</p>
-        <div className="flex flex-col text-xl justify-between   my-2">
-          <div className="w-1/6">삼성전자</div>
-          <div className="w-1/6">ibm</div>
-          <div className="w-1/6">Johnson & Johnson</div>
-          <div className="w-1/6">Walmart</div>
-          <div className="w-1/6">Alphabet</div>
-          <div className="w-1/6">Netflix</div>
-        </div>
-      </div>
     </div>
   );
 }
