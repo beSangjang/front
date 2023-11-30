@@ -190,23 +190,23 @@ export const stockDataHeaderDetail = [
   {
     name: "VirtualRealityTechHub",
     walletAddress: "0x8446fb6d176d619ff77058cbc49db2ad30b638ad",
-    orderBookContract: "0xA327a86cab8125E4B7CB4f0b5640820deb7EB9D4",
+    orderBookContract: "0x0d871a9be09236779c431208f613De798D2Afaa3",
     isPositive: true,
-    price: 4,
-    endPointWon: 132.22,
-    bounderyStart: 128.95,
-    bounderyEnd: 133.31,
-    totalShare: 1320000000000,
+    price: 17,
+    endPointWon: 17,
+    bounderyStart: 16,
+    bounderyEnd: 18,
+    totalShare: 1320000,
     financialStatement: true,
-    incomeByStock: 12,
+    incomeByStock: 1.5,
     index: 0,
-    incomeBySalary: 20,
+    incomeBySalary: 5,
     category: "recentUpdate",
   },
   {
     name: "BlockchainTechInnovate",
     walletAddress: "0x44f6c5ce5034626abc878308127a0088428ea225",
-    orderBookContract: "0x93929fBffeC4ac63D46daf45eE73E57e51a35145",
+    orderBookContract: "0x13E89AAA3c3Af55187f281B7279986ad5100c3b9",
     isPositive: true,
     price: 18420,
     endPointWon: 421.22,
@@ -223,7 +223,7 @@ export const stockDataHeaderDetail = [
   {
     name: "TelecomTechConnect",
     walletAddress: "0x2b2c5d190fc8d1e02211da824a4cf66a8ba63f94",
-    orderBookContract: "0x248Ee579599B9D5a7826eE3826f08f7e8973fB8B",
+    orderBookContract: "0x3F76B3f634A7BF64785C83124EFA5B5AC14726Cb",
     isPositive: false,
     price: 18613,
     endPointWon: 5343.22,
@@ -240,7 +240,7 @@ export const stockDataHeaderDetail = [
   {
     name: "MediaTechInnovations",
     walletAddress: "0x81adb25da410ae2e2060467914556a2026f3ff14",
-    orderBookContract: "0xC1aFE4E03393C9684432ecCb5F803e695DC6Dc29",
+    orderBookContract: "0x93ed61Bf4A50958F0D6487356A8d6dc0A215f16C",
     isPositive: true,
     price: 14111,
     endPointWon: 988999.22,
@@ -256,7 +256,7 @@ export const stockDataHeaderDetail = [
   {
     name: "TourismTechExplore",
     walletAddress: "0x0a0d293efe7b8d5bb00b853d4c4984654d597938",
-    orderBookContract: "0x2a4dBdF66903252B2F28Eb77C5189f7f9c12F552",
+    orderBookContract: "0xf3dE6E9e39B73115Bb45dD572324a80d0e15f91F",
     isPositive: true,
     price: 2153,
     endPointWon: 132.22,
@@ -273,7 +273,7 @@ export const stockDataHeaderDetail = [
   {
     name: "FashionTechInnovate",
     walletAddress: "0x6c4122e828fb97b0d664cc450db880c7b1617981",
-    orderBookContract: "0xCE0858e16e2a8A80782B0D3d098D284E16581e7d",
+    orderBookContract: "0x441401d2a9ed73b305E604E55A9E2ec38B07300c",
     isPositive: false,
     price: 13802,
     endPointWon: 235533.22,
@@ -290,7 +290,7 @@ export const stockDataHeaderDetail = [
   {
     name: "LogiTechLogistics",
     walletAddress: "0x66d2dbb376ca848b3f26b761af9ad2f8fa5f5bc3",
-    orderBookContract: "0x7A93ADc4D0d02849C35E1b2658244dF001C37A87",
+    orderBookContract: "0x13d3A98240Be6B232A7Cd085D363A55E190A3747",
     isPositive: true,
     price: 5626,
     endPointWon: 4344.22,
@@ -307,7 +307,7 @@ export const stockDataHeaderDetail = [
   {
     name: "DigitalArtTech",
     walletAddress: "0x00c70626acfa5691789ffeb43eb351773f31cebf",
-    orderBookContract: "0xAF54DB7C09Cb96A797858756A91EF53Ce176dF49",
+    orderBookContract: "0x4BfCdAaf1251721C4198936915b1bA3C0C16c1bC",
     price: 2399,
     endPointWon: 132312.22,
     bounderyStart: 12448.95,
@@ -323,7 +323,7 @@ export const stockDataHeaderDetail = [
   {
     name: "EnergyHarborSolutions",
     walletAddress: "0x36bd24dd90d68ea1e0a2fa2397a64f48bdc3d3c3",
-    orderBookContract: "0x2aE91ddDc5b94A65bd764DF54566545B5c2501f7",
+    orderBookContract: "0xdfbc797AdF6E76B3d19F48cd97E50bD72541A53f",
     isPositive: true,
     price: 6195,
     endPointWon: 53344.22,
@@ -340,7 +340,7 @@ export const stockDataHeaderDetail = [
   {
     name: "BioHealthInnovate",
     walletAddress: "0x48ea9879a555f985d53c93a043cee72403d02599",
-    orderBookContract: "0x677506226314c70b1b2D735Db45e33550089CE3A",
+    orderBookContract: "0xe3F8f674bf3599e9c8fd8160484508162eDe9de9",
     isPositive: true,
     price: 3326,
     endPointWon: 32.22,
@@ -357,7 +357,7 @@ export const stockDataHeaderDetail = [
   {
     name: "SmartCityInnovations",
     walletAddress: "0x43fb036e6d3bfbd68b0823bfaaeddf6ba5f81778",
-    orderBookContract: "0xfFaCb6474a8fA100ee6748011a3b791754fae7f2",
+    orderBookContract: "0x99632279E702f7611fcd435F1C3E3B0E4f25FDAf",
     isPositive: true,
     price: 4476,
     endPointWon: 2344.22,
@@ -374,7 +374,7 @@ export const stockDataHeaderDetail = [
   {
     name: "SpaceTechExploration",
     walletAddress: "0xcb27781d904c4b6d9b660bd9109da760b93fc81d",
-    orderBookContract: "0x4bb4b423892ad031B0CFe1f04a96dbc0B92342fA",
+    orderBookContract: "0x61A292724f040d9De4BD3Ea4FD7554c4D23E3b7d",
     isPositive: true,
     price: 6142,
     endPointWon: 132332.22,
@@ -390,7 +390,7 @@ export const stockDataHeaderDetail = [
   {
     name: "AgriTechHarvest",
     walletAddress: "0xbfb57d93c769e117b4d96de85c8160fce5b39f99",
-    orderBookContract: "0xdb386c80D14A5629475011593521d5b558C8ad12",
+    orderBookContract: "0x3880bbA3feC72d1b90A40E94c14f15CDD0E2f417",
     isPositive: true,
     price: 19185,
     endPointWon: 213.22,
@@ -407,7 +407,7 @@ export const stockDataHeaderDetail = [
   {
     name: "AeroDynamicsAviation",
     walletAddress: "0x1a8c207a97f73ac5e14a4b03aa2038fd0a2fe056",
-    orderBookContract: "0x86F76FF0D2B7C28Ec5c7306478c6f2d7d33261E8",
+    orderBookContract: "0x757F20ea4451833b97202A1A37e7c0b6F21fF70D",
     isPositive: false,
     price: 3172,
     endPointWon: 856.212,
@@ -424,7 +424,7 @@ export const stockDataHeaderDetail = [
   {
     name: "HealthSyncInnovations",
     walletAddress: "0xbb77dd3ef3d2c72e1cfc17abdbc84516546fe5a4",
-    orderBookContract: "0x2C5a5eC244A7E979C578fc2665AE8291e9013995",
+    orderBookContract: "0x0A55f3ebD16bD61145aE6667D6bb5aa5abCDc6f8",
     isPositive: true,
     price: 10090,
     endPointWon: 7756.2212,
@@ -441,7 +441,7 @@ export const stockDataHeaderDetail = [
   {
     name: "SolarTechSolutions",
     walletAddress: "0xaf096639c653724bb1f0a215e54a658cad981e67",
-    orderBookContract: "0x4122DAD772EdAf55B31d313144A2312821ce5975",
+    orderBookContract: "0xCAA87Ea0e93035192d298892c74C7d7533a76767",
     isPositive: true,
     price: 9291,
     endPointWon: 644.22,
@@ -458,7 +458,7 @@ export const stockDataHeaderDetail = [
   {
     name: "InnoSolutions",
     walletAddress: "0x3b6a6410dbb44038116fd06048ec4132335d09a5",
-    orderBookContract: "0xE6E9c3A9CE1489eF5143d54645C947b988E02685",
+    orderBookContract: "0x808A74c91Ce4F1374D3c1c9C1ed6A019659F2654",
     isPositive: false,
     price: 1149,
     endPointWon: 12424,
@@ -476,7 +476,7 @@ export const stockDataHeaderDetail = [
   {
     name: "GlobalFinanceTech",
     walletAddress: "0xf5952f0c6d584db656215e762ee7e1ee8cd953ad",
-    orderBookContract: "0x27e72FE39563fB27973E77009C4bCd417a0D6E43",
+    orderBookContract: "0x069BB14F503a601eA5Cc06D7AACd3D7e4D45d88F",
     isPositive: true,
     price: 6380,
     endPointWon: 4442,
@@ -493,7 +493,7 @@ export const stockDataHeaderDetail = [
   {
     name: "TechFusion",
     walletAddress: "0xdc1f1dcddc47aa4fba7071c77cca8dbe904859f6",
-    orderBookContract: "0x7039F557B1D546D2f939cB3B65c77289586D4cca",
+    orderBookContract: "0xe89570e1279A1a4B6F5256a32e95Ea4bfE9FB8E3",
     isPositive: false,
     price: 6708,
     endPointWon: 1332.22,
@@ -510,7 +510,7 @@ export const stockDataHeaderDetail = [
   {
     name: "CleanEcoSolutions",
     walletAddress: "0xd7c148427c1f8120f05adfe70bb313132febfbca",
-    orderBookContract: "0x9A5A28f11e37958ceEaAF5FD4a4c8755BE41386c",
+    orderBookContract: "0x44c3aaa0B67DD286a712F9b5640248455B86e42e",
     isPositive: true,
     price: 9877,
     endPointWon: 6866.22,
@@ -527,7 +527,7 @@ export const stockDataHeaderDetail = [
   {
     name: "EduInnovateGlobal",
     walletAddress: "0x45ed6f3a055f7b21dfab003a48b41e6b31d018f2",
-    orderBookContract: "0x3DA9C434B783797aFB5B336cD3b4b2D435218751",
+    orderBookContract: "0x2033Adc316A8b0CB4fC40eF7f8Db9A89c38F6220",
     isPositive: true,
     price: 18611,
     endPointWon: 4324.22,
@@ -544,7 +544,7 @@ export const stockDataHeaderDetail = [
   {
     name: "RoboTechSolutions",
     walletAddress: "0xdb5beff8666cf3624d460f6d0ef83d140784cdcc",
-    orderBookContract: "0xC750d79E2CB1F5B30f6e2aaA7E924157d18C4e00",
+    orderBookContract: "0x7FAfCC350122DDD86F76509ACAd6728e1fC0530F",
     isPositive: true,
     price: 1011,
     endPointWon: 132332.22,

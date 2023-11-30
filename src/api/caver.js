@@ -1885,7 +1885,7 @@ export async function placeBuyOrder(
     const myContract = await generateOrderBookContract(orderBookContract);
 
     const contractBill = await myContract.send(
-      { from: walletAddress, gas: 10000000 },
+      { from: walletAddress, gas: 100000000 },
       "placeBuyOrder",
       price,
       quantity,
@@ -1920,7 +1920,7 @@ export async function placeSellOrder(
     { from: walletAddress, gas: 10000000 },
     "approve",
     orderBookContract,
-    quantity
+    quantity * oneUnit
   );
   console.log(contractBill1);
   try {

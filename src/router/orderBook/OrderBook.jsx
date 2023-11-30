@@ -146,11 +146,13 @@ export default function OrderBook() {
         walletPrivate
       );
     } catch (error) {
-      console.log(error);
+      alert(
+        "error occured!! check do you have enough balance of KLAY Or PUSD, typed your private key correctly"
+      );
     } finally {
       console.log(result);
       setIsLoading(false);
-      // window.location.reload();
+      window.location.reload();
     }
   };
 
@@ -169,10 +171,12 @@ export default function OrderBook() {
         walletPrivate
       );
     } catch (error) {
-      console.log(error);
+      alert(
+        "error occured!! check do you have enough balance of KLAY Or PUSD, typed your private key correctly"
+      );
     } finally {
       setIsLoading(false);
-      // window.location.reload();
+      window.location.reload();
     }
   };
 
@@ -323,7 +327,7 @@ export default function OrderBook() {
             <button
               className="mr-8 mt-4 border  rounded-3xl hover:text-red-700 py-2 px-1 text-sm"
               onClick={() => {
-                if (graphSell.length !== 0 && sellPrice < graphBuy[0].price) {
+                if (graphBuy.length !== 0 && sellPrice < graphBuy[0].price) {
                   return alert(
                     "price of sellCall  shouldn't be over Best buyCall!"
                   );

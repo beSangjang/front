@@ -161,7 +161,7 @@ export default function PortfolioPage() {
       </div>
 
       <div className="w-full border-black border-2 mt-12 px-12 py-8 rounded-lg flex flex-col gap-2">
-        <p className="text-2xl font-bold my-4">STO List</p>
+        <p className="text-2xl font-bold my-4">My STO List</p>
         <div className="flex flex-col">
           <div className="flex font-bold text-xl justify-between  text-center my-2">
             <div className="w-1/6">name</div>
@@ -182,9 +182,6 @@ export default function PortfolioPage() {
                 />
               )
             }
-            <button className="ml-10/12 self-center  mt-5 text-lg font-semibold p-2">
-              see more {">"}
-            </button>
           </div>
         </div>
       </div>
