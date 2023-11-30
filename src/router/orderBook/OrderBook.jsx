@@ -151,8 +151,8 @@ export default function OrderBook() {
       );
     } finally {
       console.log(result);
-      setIsLoading(false);
       window.location.reload();
+      setIsLoading(false);
     }
   };
 
@@ -175,8 +175,8 @@ export default function OrderBook() {
         "error occured!! check do you have enough balance of KLAY Or PUSD, typed your private key correctly"
       );
     } finally {
-      setIsLoading(false);
       window.location.reload();
+      setIsLoading(false);
     }
   };
 
