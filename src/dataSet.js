@@ -223,7 +223,7 @@ export const stockDataHeaderDetail = [
   {
     name: "TelecomTechConnect",
     walletAddress: "0x2b2c5d190fc8d1e02211da824a4cf66a8ba63f94",
-    orderBookContract: "0x991Cd12d5490B3E4fC166ac17b4f83CC5dE83b0D",
+    orderBookContract: "0x9E0d914aFFAE73b276d9a9078eEC7590A0E95fCe",
     isPositive: false,
     price: 18613,
     endPointWon: 5343.22,
