@@ -5,6 +5,7 @@ import JaemooGraph from "./components/jaemooGraph";
 import OctagonGraph from "./components/octagonGraph";
 import { getStockDetail } from "../../api/kasCall";
 import { useEffect, useState } from "react";
+import Loading from "../../components/loading/Loading";
 
 export default function StockDetail() {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,22 +35,7 @@ export default function StockDetail() {
 
   return (
     <div className="flex flex-col w-8/12 m-auto mt-8">
-      {isLoading ? (
-        <div className="flex justify-center items-center z-10 fixed top-0 left-0 w-screen h-screen  rounded-xl">
-          <div className="pt-2 w-6/12 border  rounded-2xl text-center text-5xl font-extrabold text-white  bg-black border-black">
-            <p className="pt-4">Loading Data from Network</p>
-            <div className=" w-full my-8 ">
-              <img
-                className="w-5/12 top-4 m-auto rounded-lg"
-                src="https://i.pinimg.com/originals/ec/86/1e/ec861e53d36ca3713f30e51f5a8cb62d.gif"
-                alt="waiting"
-              ></img>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div></div>
-      )}
+      {isLoading ? <Loading /> : <div></div>}
       <p className="text-3xl font-bold">{stockData.name}</p>
       <p className="text-4xl font-bold ">{stockData.price}₩</p>
       <p
@@ -100,7 +86,7 @@ export default function StockDetail() {
           </p>
           <Link
             className="border border-black rounded-md self-end mr-4 py-1 px-2 bg-amber-300"
-            to={`/stockDetail/${stockDetail.walletAddress}/orderBook`}
+            to={`/stockDetail/orderBook/${stockAddress}`}
           >
             go Trade
           </Link>

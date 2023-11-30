@@ -1,18 +1,18 @@
 import React, { useState } from "react";
+import GoogleForm from "./component/GoogleForm";
+import Accordion from "./component/foldable";
 
-const FormData = require("form-data");
-
-export default function MintingPage() {
+const App = () => {
   return (
-    <iframe
-      src="https://docs.google.com/forms/d/e/1FAIpQLSdnNK-18zAdW1NQXKqA2fzezO4pc6gL0WlX1ElEhVvMHnyUAg/viewform?embedded=true"
-      width="640"
-      height="700"
-      frameborder="0"
-      marginheight="0"
-      marginwidth="0"
-    >
-      로드 중…
-    </iframe>
+    <div className="w-10/12 m-auto bg-gray-100 min-h-screen flex">
+      <div className="w-1/2 mx-auto my-8">
+        <GoogleForm />
+      </div>
+      <div className="w-5/12 mx-auto my-12">
+        <Accordion dataOut="이걸로" dataUnder="복제생산" />
+      </div>
+    </div>
   );
-}
+};
+
+export default App;
