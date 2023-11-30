@@ -137,7 +137,7 @@ export default function StockDetail() {
       </div>
       <div className="border border-black rounded-lg w-full mt-3 flex flex-col  pl-4 py-4">
         <div className="flex  justify-around">
-          <p className="text-2xl font-semibold">Fianacial Statement</p>
+          <p className="text-2xl font-semibold">Finance Statement</p>
           {fold ? (
             <div
               className="hover:cursor-pointer w-16 text-xl border border-black rounded-lg"
@@ -176,7 +176,7 @@ export default function StockDetail() {
       </div>
       <div className="border border-black rounded-lg w-full mt-3 flex flex-col h-80 pl-4 py-4">
         <OctagonGraph></OctagonGraph>
-        오각형 그래프
+        OctagonGraph with test value
       </div>
     </div>
   );

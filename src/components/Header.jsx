@@ -75,7 +75,13 @@ export default function Header() {
             {searchFocus && <SearchResult searchTxt={search} />}
           </div>
           <div>
-            <Link to={"/aa"}>what is </Link>
+            <Link
+              to={
+                "https://docs.google.com/document/d/13kr5SESbG5O65iSWzklvH6WWqcYMOPCs3s379kf9gto/edit?usp=sharing"
+              }
+            >
+              What is COTC
+            </Link>
           </div>
           {/* <div>
             <Link to={"/mint"}>Information</Link>

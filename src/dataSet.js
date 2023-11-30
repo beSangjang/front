@@ -833,7 +833,7 @@ export const pentagonData = [
 
 export const stockLineData = [
   {
-    id: "두나무",
+    id: "test graph",
     color: "hsl(217, 70%, 50%)",
     data: [
       {

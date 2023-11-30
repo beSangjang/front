@@ -133,29 +133,26 @@ export default function PortfolioPage() {
           </div>
           <div className="w-1/2">
             <span className="font-bold">dividend:</span>
-            {
-              walletBalance + 32 //배당
-            }
+            12PUSD
           </div>
         </div>
         <div className="text-mg flex">
           <div className="w-1/2">
             <span className="font-bold">total earn:</span>
-            {walletBalance + 33}%
-          </div>
-          <div className="w-1/2">
-            <span className="font-bold">fee rate:</span>
-            {walletBalance + 34}
+            {
+              25 //hard coded for now, test value
+            }
+            %
           </div>
         </div>
         <div className="text-mg flex">
           <div className="w-1/2">
             <span className="font-bold">total buy</span>
-            {walletBalance + 35}
+            200pusd
           </div>
           <div className="w-1/2">
             <span className="font-bold">total sell</span>
-            {walletBalance + 36}
+            15pusd
           </div>
         </div>
       </div>
@@ -186,17 +183,10 @@ export default function PortfolioPage() {
         </div>
       </div>
 
-      <div className="w-full border-black border-2 mt-12 px-12 py-8 rounded-lg flex flex-col gap-2">
+      {/* <div className="w-full border-black border-2 mt-12 px-12 py-8 rounded-lg flex flex-col gap-2">
         <p className="text-2xl font-bold ">주주총회</p>
-        <div className="flex flex-col text-xl justify-between   my-2">
-          <div className="w-1/6">삼성전자</div>
-          <div className="w-1/6">ibm</div>
-          <div className="w-1/6">Johnson & Johnson</div>
-          <div className="w-1/6">Walmart</div>
-          <div className="w-1/6">Alphabet</div>
-          <div className="w-1/6">Netflix</div>
-        </div>
-      </div>
+        <div className="flex flex-col text-xl justify-between   my-2"></div>
+      </div> */}
     </div>
   );
 }
