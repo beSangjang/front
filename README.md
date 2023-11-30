@@ -10,8 +10,8 @@ COTC (Crypto Over The Counter) introduces an innovative approach to trading over
 Our vision is to provide a platform that allows the issuance and trading of real-world assets in the form of tokens, starting from OTC stocks to tokenized securities. Through this, we aim to reduce the complexity and costs associated with intermediary institutions in the traditional OTC stock market, while realizing more efficient and transparent transactions through a decentralized network.  
 <img src="src/howTokenTraded.png" width="500px">
 
-## walkThrough
 
+## walkThrough
 - you need metamask installed before using our app
 - you need to connect with KLAYTN BAOBOB network in order to interact with smartcontract we deployed
 - we require you to type your private key before triggering smart contract, since we didn't implemented any tool to protect your key, we recommend using new wallet with no assets.
