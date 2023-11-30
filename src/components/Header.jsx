@@ -62,7 +62,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <div className="flex gap-8">
+        <div className="flex gap-12">
           <div>
             <input
               className="bg-gray-100 rounded-full focus:outline-none"
@@ -77,9 +77,9 @@ export default function Header() {
           <div>
             <Link to={"/aa"}>what is </Link>
           </div>
-          <div>
+          {/* <div>
             <Link to={"/mint"}>Information</Link>
-          </div>
+          </div> */}
           <div>
             <button
               onClick={() => {
