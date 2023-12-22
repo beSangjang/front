@@ -1,7 +1,7 @@
 # COTC(Crypto over the counter)
 
 [whitePaper](https://docs.google.com/document/d/13kr5SESbG5O65iSWzklvH6WWqcYMOPCs3s379kf9gto/edit)  
-[demo](https://front-pjdiu7hvt-decent-trio.vercel.app/)
+[demo](https://front-8obhirfnn-decent-trio.vercel.app/)
 
 ## introduction
 
